@@ -4,6 +4,10 @@ on: [push]
 
 jobs:
   build:
+    environment:
+      name: github-pages
+      url: ${{steps.deployment.outputs.page_url}}
+
     runs-on: [ubuntu-22.04]
 
     if: ${{ contains(github.event.head_commit.message, 'build') }}  #commit消息中包含 build 才执行打包
@@ -32,9 +36,15 @@ jobs:
           name: com.ping.adt.updatesite
           path: com.ping.adt.updatesite/target/com.ping.adt.updatesite-*.zip
       
-      - name: 部署到docs文件夹下
-        uses: JamesIves/github-pages-deploy-action@v4
+
+      #部署
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+      - name: Upload Artifact
+        uses: actions/upload-pages-artifact@v2
         with:
-          folder: com.ping.adt.updatesite/target/repository
-  
-  
+          # upload entire directory
+          path: './com.ping.adt.updatesite/target/repository'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
