@@ -1,0 +1,33 @@
+name: Builder
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    if: ${{ contains(github.event.head_commit.message, 'build') }}  #commit消息中包含 build 才执行打包
+
+    steps:
+      - uses: actions/checkout@v4     #将项目出到workflow工作区
+
+      - name: 设置JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'zulu'
+      
+
+      - name: 设置Maven
+        uses: stCarolas/setup-maven@v5
+        with:
+          maven-version: 3.9.9
+      
+      - name: 构建
+        run: mvn --batch-mode --update-snapshots package
+      
+      - name: 上传打包结果
+        run: actions/upload-artifact@v4
+        with:
+          name: com.ping.adt.updatesite
+          path: com.ping.adt.updatesite/target/org.example.impl.updatesite*.zip

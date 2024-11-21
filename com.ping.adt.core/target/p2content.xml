@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<units size='1'>
+  <unit id='com.ping.adt.core' version='0.0.1' singleton='false' generation='2'>
+    <update id='com.ping.adt.core' range='[0.0.0,0.0.1)' severity='0'/>
+    <properties size='6'>
+      <property name='org.eclipse.equinox.p2.name' value='ADT Core'/>
+      <property name='org.eclipse.equinox.p2.provider' value='Ping'/>
+      <property name='maven-groupId' value='com.ping.adt'/>
+      <property name='maven-artifactId' value='com.ping.adt.core'/>
+      <property name='maven-version' value='0.0.1'/>
+      <property name='maven-type' value='eclipse-plugin'/>
+    </properties>
+    <provides size='24'>
+      <provided namespace='org.eclipse.equinox.p2.iu' name='com.ping.adt.core' version='0.0.1'/>
+      <provided namespace='osgi.bundle' name='com.ping.adt.core' version='0.0.1'/>
+      <provided namespace='java.package' name='com.alibaba.fastjson2' version='0.0.0'/>
+      <provided namespace='java.package' name='com.alibaba.fastjson2.annotation' version='0.0.0'/>
+      <provided namespace='java.package' name='com.alibaba.fastjson2.codec' version='0.0.0'/>
+      <provided namespace='java.package' name='com.alibaba.fastjson2.filter' version='0.0.0'/>
+      <provided namespace='java.package' name='com.alibaba.fastjson2.function' version='0.0.0'/>
+      <provided namespace='java.package' name='com.alibaba.fastjson2.function.impl' version='0.0.0'/>
+      <provided namespace='java.package' name='com.alibaba.fastjson2.internal' version='0.0.0'/>
+      <provided namespace='java.package' name='com.alibaba.fastjson2.internal.asm' version='0.0.0'/>
+      <provided namespace='java.package' name='com.alibaba.fastjson2.internal.mixin.spring' version='0.0.0'/>
+      <provided namespace='java.package' name='com.alibaba.fastjson2.internal.trove.map.hash' version='0.0.0'/>
+      <provided namespace='java.package' name='com.alibaba.fastjson2.modules' version='0.0.0'/>
+      <provided namespace='java.package' name='com.alibaba.fastjson2.reader' version='0.0.0'/>
+      <provided namespace='java.package' name='com.alibaba.fastjson2.schema' version='0.0.0'/>
+      <provided namespace='java.package' name='com.alibaba.fastjson2.stream' version='0.0.0'/>
+      <provided namespace='java.package' name='com.alibaba.fastjson2.support' version='0.0.0'/>
+      <provided namespace='java.package' name='com.alibaba.fastjson2.support.csv' version='0.0.0'/>
+      <provided namespace='java.package' name='com.alibaba.fastjson2.support.money' version='0.0.0'/>
+      <provided namespace='java.package' name='com.alibaba.fastjson2.util' version='0.0.0'/>
+      <provided namespace='java.package' name='com.alibaba.fastjson2.writer' version='0.0.0'/>
+      <provided namespace='java.package' name='com.ping.adt.core.tools' version='0.0.0'/>
+      <provided namespace='osgi.identity' name='com.ping.adt.core' version='0.0.1'>
+        <properties size='1'>
+          <property name='type' value='osgi.bundle'/>
+        </properties>
+      </provided>
+      <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+    </provides>
+    <requires size='14'>
+      <required namespace='osgi.bundle' name='org.eclipse.ui' range='0.0.0'/>
+      <required namespace='osgi.bundle' name='org.eclipse.core.runtime' range='0.0.0'/>
+      <required namespace='osgi.bundle' name='org.eclipse.e4.ui.model.workbench' range='0.0.0'/>
+      <required namespace='osgi.bundle' name='com.sap.adt.project' range='0.0.0'/>
+      <required namespace='osgi.bundle' name='com.sap.adt.project.ui' range='0.0.0'/>
+      <required namespace='osgi.bundle' name='com.sap.adt.destinations' range='0.0.0'/>
+      <required namespace='osgi.bundle' name='com.sap.adt.destinations.ui' range='0.0.0'/>
+      <required namespace='osgi.bundle' name='com.sap.adt.communication' range='0.0.0'/>
+      <required namespace='osgi.bundle' name='com.sap.adt.communication.ui' range='0.0.0'/>
+      <required namespace='osgi.bundle' name='com.sap.adt.compatibility' range='0.0.0'/>
+      <required namespace='osgi.bundle' name='org.eclipse.core.resources' range='0.0.0'/>
+      <required namespace='osgi.bundle' name='org.eclipse.ui.workbench' range='0.0.0'/>
+      <requiredProperties namespace='osgi.ee' match='(&amp;(osgi.ee=JavaSE)(version=21))'>
+        <description>
+          com.ping.adt.core
+        </description>
+      </requiredProperties>
+      <required namespace='org.eclipse.equinox.p2.iu' name='com.ping.adt.core.source' range='[0.0.1,0.0.1]' optional='true'>
+        <filter>
+          (org.eclipse.update.install.sources=true)
+        </filter>
+      </required>
+    </requires>
+    <artifacts size='1'>
+      <artifact classifier='osgi.bundle' id='com.ping.adt.core' version='0.0.1'/>
+    </artifacts>
+    <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+    <touchpointData size='1'>
+      <instructions size='1'>
+        <instruction key='manifest'>
+          Bundle-SymbolicName: com.ping.adt.core&#xA;Bundle-Version: 0.0.1&#xA;
+        </instruction>
+      </instructions>
+    </touchpointData>
+  </unit>
+</units>

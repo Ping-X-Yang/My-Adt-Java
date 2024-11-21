@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?artifactRepository version='1.1.0'?>
+<artifacts size='1'>
+  <artifact classifier='org.eclipse.update.feature' id='com.ping.adt.core.feature' version='0.0.1'>
+    <properties size='10'>
+      <property name='artifact.size' value='654'/>
+      <property name='download.size' value='654'/>
+      <property name='download.checksum.sha-512' value='fa4e5c0d885aa24fa6b101b979e3fe45b87189343763b45a2190cbe207421e04e6d84d907529aad9cf904f15d31693c00ada01c7f45f0da235a169fdbaab2267'/>
+      <property name='download.checksum.sha-1' value='04f837c9a4d8e81f1cdbb98aaefc9f258231877d'/>
+      <property name='download.checksum.sha-256' value='c43023b1381c69dc2eb36ae320682a064bcac73ac1c6a28d728574924f39b8f6'/>
+      <property name='maven-groupId' value='com.ping.adt'/>
+      <property name='maven-artifactId' value='com.ping.adt.core.feature'/>
+      <property name='maven-version' value='0.0.1'/>
+      <property name='maven-type' value='eclipse-feature'/>
+      <property name='download.contentType' value='application/zip'/>
+    </properties>
+  </artifact>
+</artifacts>

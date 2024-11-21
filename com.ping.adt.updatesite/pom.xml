@@ -30,10 +30,10 @@
 							<outputDirectory>../docs</outputDirectory>
 							<resources>
 								<resource>
-									<directory>./target</directory>
+									<directory>${basedir}/target/repository</directory>
 								</resource>
 								<resource>
-									<directory>.</directory>
+									<directory>${basedir}</directory>
 									<includes>
 										<include>index.html</include>
 									</includes>

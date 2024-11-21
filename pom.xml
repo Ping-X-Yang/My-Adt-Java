@@ -13,14 +13,14 @@
 
   <repositories>
     <repository>
-      <id>eclipse-latest</id>
+      <id>eclipse-2024-09</id>
       <layout>p2</layout>
-      <url>https://mirrors.ustc.edu.cn/eclipse/releases/latest/</url>
+      <url>https://mirrors.ustc.edu.cn/eclipse/releases/2024-09/</url>
     </repository>
     <repository>
-      <id>adt-latest</id>
+      <id>adt-2024-09</id>
       <layout>p2</layout>
-      <url>https://tools.hana.ondemand.com/latest</url>
+      <url>https://tools.hana.ondemand.com/2024-09</url>
     </repository>
   </repositories>
 
