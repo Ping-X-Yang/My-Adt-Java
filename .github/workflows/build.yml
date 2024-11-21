@@ -27,7 +27,7 @@ jobs:
         run: mvn --batch-mode --update-snapshots package
       
       - name: 上传打包结果
-        run: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4
         with:
           name: com.ping.adt.updatesite
           path: com.ping.adt.updatesite/target/org.example.impl.updatesite*.zip
