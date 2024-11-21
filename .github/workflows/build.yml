@@ -30,4 +30,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: com.ping.adt.updatesite
-          path: com.ping.adt.updatesite/target/org.example.impl.updatesite*.zip
+          path: com.ping.adt.updatesite/target/com.ping.adt.updatesite-*.zip
