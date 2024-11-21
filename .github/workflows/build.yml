@@ -31,3 +31,10 @@ jobs:
         with:
           name: com.ping.adt.updatesite
           path: com.ping.adt.updatesite/target/com.ping.adt.updatesite-*.zip
+      
+      - name: 部署到docs文件夹下
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: com.ping.adt.updatesite/target/repository
+  
+  
