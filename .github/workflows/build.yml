@@ -12,7 +12,7 @@ jobs:
     environment:
       name: github-pages
       url: ${{steps.deployment.outputs.page_url}}
-      
+
 
     runs-on: [ubuntu-22.04]
 
@@ -43,7 +43,7 @@ jobs:
           path: com.ping.adt.updatesite/target/com.ping.adt.updatesite-*.zip
       
 
-      #部署
+      #部署到Pages
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload Artifact
