@@ -5,9 +5,9 @@
     <properties size='10'>
       <property name='artifact.size' value='653'/>
       <property name='download.size' value='653'/>
-      <property name='download.checksum.sha-512' value='a2986d673228b7d18d6976b7c6b3e59a7624dab8c42fe8697c1e4be5412a1265e849b5c7cac8d453de39fa39dc0500a74703fbb9a6bf3480a732768d65e1b66d'/>
-      <property name='download.checksum.sha-1' value='170f15a29b2b025e7d5fe4662c81eb0ec5aa726a'/>
-      <property name='download.checksum.sha-256' value='e3c35ca3b1358e0570ac3714ac353c078cd1ab5a02d4ce6e2de9a1663470ea5a'/>
+      <property name='download.checksum.sha-512' value='9ba008d8ab4ec2cf65b5ec0221089b4a7d8105c731589461a77f664609874908603a5328de2018593c4088713b59f1940ee300c56d466f13f9dcefaa682cfb00'/>
+      <property name='download.checksum.sha-1' value='d82a4cecb40f633a5de7c444608fe66f4c1f2787'/>
+      <property name='download.checksum.sha-256' value='26dc878c3b5a5496cfce15736e8f0b5d207a48523b90b6aee9adb933daf3bf9e'/>
       <property name='maven-groupId' value='com.ping.adt'/>
       <property name='maven-artifactId' value='com.ping.adt.structure.browser.feature'/>
       <property name='maven-version' value='0.0.1'/>

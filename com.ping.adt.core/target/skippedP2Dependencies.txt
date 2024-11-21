@@ -1,4 +1,4 @@
-com.ping.adt:com.ping.adt.core:eclipse-plugin:libs/fastjson2-2.0.53.jar @ C:\Users\019741\eclipse-rcp-myAdt-new\com.ping.adt.core
+com.ping.adt:com.ping.adt.core:eclipse-plugin:libs/fastjson2-2.0.53.jar @ C:\Users\019741\git\My-Adt-Java\com.ping.adt.core
 p2.eclipse.plugin:com.sap.adt.communication.ui:eclipse-plugin @ D:\MavenLocalRepository\p2\osgi\bundle\com.sap.adt.communication.ui\3.46.0\com.sap.adt.communication.ui-3.46.0.jar
 p2.eclipse.plugin:com.sap.adt.communication:eclipse-plugin @ D:\MavenLocalRepository\p2\osgi\bundle\com.sap.adt.communication\3.46.0\com.sap.adt.communication-3.46.0.jar
 p2.eclipse.plugin:com.sap.adt.compatibility.base:eclipse-plugin @ D:\MavenLocalRepository\p2\osgi\bundle\com.sap.adt.compatibility.base\3.46.0\com.sap.adt.compatibility.base-3.46.0.jar
