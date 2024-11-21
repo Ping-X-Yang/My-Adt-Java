@@ -26,12 +26,12 @@
 							<goal>copy-resources</goal>
 						</goals>
 						<configuration>
-<!--							<outputDirectory>${basedir}/target/repository</outputDirectory>-->
-							<outputDirectory>../docs</outputDirectory>
+							<outputDirectory>${basedir}/target/repository</outputDirectory>
+<!--							<outputDirectory>../docs</outputDirectory>-->
 							<resources>
-								<resource>
+<!--								<resource>
 									<directory>${basedir}/target/repository</directory>
-								</resource>
+								</resource>-->
 								<resource>
 									<directory>${basedir}</directory>
 									<includes>
