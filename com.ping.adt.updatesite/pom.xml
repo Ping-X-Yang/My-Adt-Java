@@ -63,7 +63,7 @@
 						</goals>
 					</execution>
 					<execution>
-						<id>archive-products</id>
+						<id>archive-products</id>  
 						<goals>
 							<goal>archive-products</goal>
 						</goals>
