@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?artifactRepository version='1.1.0'?>
+<artifacts size='1'>
+  <artifact classifier='osgi.bundle' id='com.ping.adt.structure.browser.ui' version='0.0.1'>
+    <properties size='9'>
+      <property name='artifact.size' value='24198'/>
+      <property name='download.size' value='24198'/>
+      <property name='download.checksum.sha-512' value='96367b613701cc65639974f33787ab60024574e75acdf710a5697a242c37491ac4406e70066c70666889e8cec34206482d1f84b72fd95a3362c75107dcaa7c9f'/>
+      <property name='download.checksum.sha-1' value='bae97c81866fd85398e03985a325395ca0828716'/>
+      <property name='download.checksum.sha-256' value='babecbc0317193cee311557be4ed9352aca7deb9644242ab17ba876160e75efe'/>
+      <property name='maven-groupId' value='com.ping.adt'/>
+      <property name='maven-artifactId' value='com.ping.adt.structure.browser.ui'/>
+      <property name='maven-version' value='0.0.1'/>
+      <property name='maven-type' value='eclipse-plugin'/>
+    </properties>
+  </artifact>
+</artifacts>

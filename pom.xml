@@ -1,0 +1,84 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.ping.adt</groupId>
+  <artifactId>build</artifactId>
+  <version>0.0.1</version>
+  <packaging>pom</packaging>
+
+  <properties>
+    <tycho.version>4.0.9</tycho.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <repositories>
+    <repository>
+      <id>eclipse-latest</id>
+      <layout>p2</layout>
+      <url>https://mirrors.ustc.edu.cn/eclipse/releases/latest/</url>
+    </repository>
+    <repository>
+      <id>adt-latest</id>
+      <layout>p2</layout>
+      <url>https://tools.hana.ondemand.com/latest</url>
+    </repository>
+  </repositories>
+
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.eclipse.tycho</groupId>
+          <artifactId>tycho-p2-director-plugin</artifactId>
+          <version>${tycho.version}</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
+    <plugins>
+      <plugin>
+        <groupId>org.eclipse.tycho</groupId>
+        <artifactId>tycho-maven-plugin</artifactId>
+        <version>${tycho.version}</version>
+        <extensions>true</extensions>
+      </plugin>
+      <plugin>
+        <groupId>org.eclipse.tycho</groupId>
+        <artifactId>target-platform-configuration</artifactId>
+        <version>${tycho.version}</version>
+        <configuration>
+          <!-- Optional set the Java version you are using-->
+          <!--   <executionEnvironment>JavaSE-17</executionEnvironment>-->
+          <environments>
+            <environment>
+              <os>linux</os>
+              <ws>gtk</ws>
+              <arch>x86_64</arch>
+            </environment>
+            <environment>
+              <os>win32</os>
+              <ws>win32</ws>
+              <arch>x86_64</arch>
+            </environment>
+            <environment>
+              <os>macosx</os>
+              <ws>cocoa</ws>
+              <arch>x86_64</arch>
+            </environment>
+          </environments>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <modules>
+    <module>com.ping.adt.core.feature</module>
+    <module>com.ping.adt.core</module>
+
+    <module>com.ping.adt.structure.browser.feature</module>
+    <module>com.ping.adt.structure.browser.ui</module>
+
+    <module>com.ping.adt.updatesite</module>
+  </modules>
+
+</project>

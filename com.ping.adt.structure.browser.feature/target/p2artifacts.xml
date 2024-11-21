@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?artifactRepository version='1.1.0'?>
+<artifacts size='1'>
+  <artifact classifier='org.eclipse.update.feature' id='com.ping.adt.structure.browser.feature' version='0.0.1'>
+    <properties size='10'>
+      <property name='artifact.size' value='653'/>
+      <property name='download.size' value='653'/>
+      <property name='download.checksum.sha-512' value='a2986d673228b7d18d6976b7c6b3e59a7624dab8c42fe8697c1e4be5412a1265e849b5c7cac8d453de39fa39dc0500a74703fbb9a6bf3480a732768d65e1b66d'/>
+      <property name='download.checksum.sha-1' value='170f15a29b2b025e7d5fe4662c81eb0ec5aa726a'/>
+      <property name='download.checksum.sha-256' value='e3c35ca3b1358e0570ac3714ac353c078cd1ab5a02d4ce6e2de9a1663470ea5a'/>
+      <property name='maven-groupId' value='com.ping.adt'/>
+      <property name='maven-artifactId' value='com.ping.adt.structure.browser.feature'/>
+      <property name='maven-version' value='0.0.1'/>
+      <property name='maven-type' value='eclipse-feature'/>
+      <property name='download.contentType' value='application/zip'/>
+    </properties>
+  </artifact>
+</artifacts>

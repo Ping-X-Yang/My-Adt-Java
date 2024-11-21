@@ -1,0 +1,27 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: ADT Core
+Bundle-SymbolicName: com.ping.adt.core
+Bundle-Version: 0.0.1
+Export-Package: com.alibaba.fastjson2,com.alibaba.fastjson2.annotation,c
+ om.alibaba.fastjson2.codec,com.alibaba.fastjson2.filter,com.alibaba.fas
+ tjson2.function,com.alibaba.fastjson2.function.impl,com.alibaba.fastjso
+ n2.internal,com.alibaba.fastjson2.internal.asm,com.alibaba.fastjson2.in
+ ternal.mixin.spring,com.alibaba.fastjson2.internal.trove.map.hash,com.a
+ libaba.fastjson2.modules,com.alibaba.fastjson2.reader,com.alibaba.fastj
+ son2.schema,com.alibaba.fastjson2.stream,com.alibaba.fastjson2.support,
+ com.alibaba.fastjson2.support.csv,com.alibaba.fastjson2.support.money,c
+ om.alibaba.fastjson2.util,com.alibaba.fastjson2.writer,com.ping.adt.cor
+ e.tools
+Bundle-Activator: com.ping.adt.core.Activator
+Bundle-ClassPath: libs/fastjson2-2.0.53.jar,.
+Bundle-Vendor: Ping
+Require-Bundle: org.eclipse.ui,org.eclipse.core.runtime,org.eclipse.e4.u
+ i.model.workbench,com.sap.adt.project,com.sap.adt.project.ui,com.sap.ad
+ t.destinations,com.sap.adt.destinations.ui,com.sap.adt.communication,co
+ m.sap.adt.communication.ui,com.sap.adt.compatibility,org.eclipse.core.r
+ esources,org.eclipse.ui.workbench
+Automatic-Module-Name: com.ping.adt.core
+Bundle-ActivationPolicy: lazy
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=21))"
+
