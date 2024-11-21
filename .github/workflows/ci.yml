@@ -1,4 +1,13 @@
-name: Builder
+#此Action主要有两部分构成
+# 1. 构建
+#     通过mvn构建Eclipse插件
+#
+# 2. 部署
+#     将构建后的结果部署到Github Pages上，以此搭建插件的更新站点
+#
+
+
+name: CI
 
 on: [push]
 
@@ -43,14 +52,16 @@ jobs:
           path: com.ping.adt.updatesite/target/com.ping.adt.updatesite-*.zip
       
 
-      #部署到Pages
-      - name: Setup Pages
+      #部署步骤
+      - name: 搭建Pages
         uses: actions/configure-pages@v3
-      - name: Upload Artifact
+
+      - name: 打包并上传
         uses: actions/upload-pages-artifact@v2
         with:
           # upload entire directory
           path: './com.ping.adt.updatesite/target/repository'
-      - name: Deploy to GitHub Pages
+
+      - name: 部署到Github Pages
         id: deployment
         uses: actions/deploy-pages@v2
