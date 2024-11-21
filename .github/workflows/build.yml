@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: [ubuntu-22.04]
 
     if: ${{ contains(github.event.head_commit.message, 'build') }}  #commit消息中包含 build 才执行打包
 
