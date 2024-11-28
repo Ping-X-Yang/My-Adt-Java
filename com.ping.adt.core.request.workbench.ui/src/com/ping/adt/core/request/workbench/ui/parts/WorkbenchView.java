@@ -1,42 +1,37 @@
-package com.ping.adt.structure.browser.ui.parts;
+package com.ping.adt.core.request.workbench.ui.parts;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
-import org.eclipse.core.resources.IProject;
 import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.di.Focus;
 import org.eclipse.e4.ui.services.IServiceConstants;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 
 import com.ping.adt.core.tools.MyAdtTools;
 
-
-
-
-
-
-public class BrowerView {
+public class WorkbenchView {
 	private Label myLabelInView;
-	private StructureBrower brower;
 
 	@PostConstruct
-	public void createPartControl(Composite parent) {		
-		brower = new StructureBrower(parent);
+	public void createPartControl(Composite parent) {
+		System.out.println("Enter in SampleE4View postConstruct");
+
+		myLabelInView = new Label(parent, SWT.BORDER);
+		myLabelInView.setText("This is a sample E4 view");
+		
+		MyAdtTools.getActiveEditor();
+
 	}
 
 	@Focus
 	public void setFocus() {
-//		myLabelInView.setFocus();
-		
-		//登录检查
-		IProject project = MyAdtTools.getActiveProject();
-		MyAdtTools.ensureLoggedOn(project);
-		
-		
+		myLabelInView.setFocus();
+
 	}
 
 	/**

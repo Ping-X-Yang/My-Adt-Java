@@ -1,4 +1,4 @@
-package com.ping.adt.core;
+package com.ping.adt.core.request.workbench.ui;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;

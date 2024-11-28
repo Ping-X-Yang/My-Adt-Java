@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ASCII"?>
+<fragment:ModelFragments xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:commands="http://www.eclipse.org/ui/2010/UIModel/application/commands" xmlns:fragment="http://www.eclipse.org/ui/2010/UIModel/fragment" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_BxaXACerEeWxCPrV0pAZQQ">
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_QqSikIrOEeW7h_qdP9N9fw" featurename="commands" parentElementId="xpath:/">
+    <elements xsi:type="commands:Command" xmi:id="_UCYfwIrOEeW7h_qdP9N9fw" elementId="com.ping.adt.core.MFD.command.1" commandName="Hello World">
+      <persistedState key="persistState" value="false"/>
+    </elements>
+  </fragments>
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_fW12kIrOEeW7h_qdP9N9fw" featurename="handlers" parentElementId="xpath:/">
+    <elements xsi:type="commands:Handler" xmi:id="_k2L0IIrOEeW7h_qdP9N9fw" elementId="com.ping.adt.core.MFD.handler.1" contributionURI="bundleclass://com.ping.adt.core/com.ping.adt.core.handlers.HelloWorldHandler" command="_UCYfwIrOEeW7h_qdP9N9fw">
+      <persistedState key="persistState" value="false"/>
+    </elements>
+  </fragments>
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_pVgfIIrOEeW7h_qdP9N9fw" featurename="menuContributions" parentElementId="xpath:/">
+    <elements xsi:type="menu:MenuContribution" xmi:id="_BducUIrPEeW7h_qdP9N9fw" elementId="com.ping.adt.core.MFD.menucontribution.1" parentId="popup">
+      <persistedState key="persistState" value="false"/>
+      <children xsi:type="menu:Menu" xmi:id="_Dtii0IrPEeW7h_qdP9N9fw" elementId="com.ping.adt.core.MFD..menu.1" label="&#x6211;&#x7684;&#x5de5;&#x5177;&#x7bb1;" iconURI="platform:/plugin/com.ping.adt.core/icons/Sample.png">
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_r47aAK1IEe-dSKmiuLjZmQ" elementId="com.ping.adt.core.handledmenuitem.1" toBeRendered="false" visible="false" label="&#x7ec4;&#x4e00;&#xff1a;&#x8bf7;&#x6c42;&#x7ec4;" enabled="false"/>
+        <children xsi:type="menu:MenuSeparator" xmi:id="_s0hfkK1IEe-dSKmiuLjZmQ" elementId="com.ping.adt.core.menuseparator.0"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_sXdJEK1IEe-dSKmiuLjZmQ" elementId="com.ping.adt.core.handledmenuitem." toBeRendered="false" visible="false" label="&#x7ec4;&#x4e8c;&#xff1a;&#x5f85;&#x5b9a;" enabled="false"/>
+      </children>
+    </elements>
+  </fragments>
+</fragment:ModelFragments>
