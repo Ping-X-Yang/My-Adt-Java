@@ -28,6 +28,10 @@ import com.sap.adt.destinations.ui.logon.AdtLogonServiceUIFactory;
 import com.sap.adt.project.IAdtCoreProject;
 import com.sap.adt.project.ui.dialogs.AdtProjectSelectionDialog;
 import com.sap.adt.project.ui.util.ProjectUtil;
+import com.sap.adt.tools.abapsource.ui.sources.editors.IAbapSourceMultiPageEditor;
+import com.sap.adt.tools.abapsource.ui.sources.editors.IAbapSourcePage;
+import com.sap.adt.tools.core.model.adtcore.IAdtObject;
+
 import org.eclipse.core.runtime.Path;
 
 
@@ -163,6 +167,21 @@ public class MyAdtTools {
 	 */
 	public static ResourceManager CreateResourceManager() {
 		return new LocalResourceManager(JFaceResources.getResources());
+	}
+	
+	
+	/**
+	 * @param editor 编辑器
+	 * @return Adt对象
+	 */
+	public static IAdtObject getAdtObject(IEditorPart editor) {
+		if (editor instanceof IAbapSourceMultiPageEditor ) {
+			IAbapSourcePage abapSourcePage = (IAbapSourcePage) editor.getAdapter(IAbapSourcePage.class);
+			if(abapSourcePage != null) {
+				return abapSourcePage.getMultiPageEditor().getModel();
+			}
+		}
+		return null;
 	}
 	
 	

@@ -42,7 +42,13 @@ Require-Bundle: org.eclipse.jface,
  com.sap.adt.destinations.ui,
  com.sap.adt.communication,
  com.sap.adt.communication.ui,
- com.sap.adt.compatibility
+ com.sap.adt.compatibility,
+ com.sap.adt.tools.core.base;bundle-version="3.46.1",
+ com.sap.adt.tools.abapsource;bundle-version="3.46.1",
+ com.sap.adt.tools.abapsource.ui;bundle-version="3.46.1",
+ com.sap.adt.util.ui;bundle-version="3.46.0",
+ com.sap.adt.tools.core;bundle-version="3.46.1",
+ com.sap.adt.tools.core.ui;bundle-version="3.46.1"
 Bundle-RequiredExecutionEnvironment: JavaSE-17
 Automatic-Module-Name: com.ping.adt.core
 Import-Package: jakarta.annotation;version="[2.1.0,3.0.0)",

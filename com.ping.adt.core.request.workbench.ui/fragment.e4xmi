@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<fragment:ModelFragments xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/descriptor/basic" xmlns:fragment="http://www.eclipse.org/ui/2010/UIModel/fragment" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmlns:ui="http://www.eclipse.org/ui/2010/UIModel/application/ui" xmi:id="_BxaXACerEeWxCPrV0pAZQQ">
+<fragment:ModelFragments xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/descriptor/basic" xmlns:commands="http://www.eclipse.org/ui/2010/UIModel/application/commands" xmlns:fragment="http://www.eclipse.org/ui/2010/UIModel/fragment" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmlns:ui="http://www.eclipse.org/ui/2010/UIModel/application/ui" xmi:id="_BxaXACerEeWxCPrV0pAZQQ">
   <fragments xsi:type="fragment:StringModelFragment" xmi:id="_EI7oACerEeWxCPrV0pAZQQ" featurename="descriptors" parentElementId="xpath:/">
     <elements xsi:type="basic:PartDescriptor" xmi:id="_KMklcCerEeWxCPrV0pAZQQ" elementId="com.ping.adt.core.request.workbench.ui.WorkbenchView" label="Request Workbench View" iconURI="platform:/plugin/com.ping.adt.core.request.workbench.ui/icons/Sample.png" tooltip="" category="My ADT Plugins" closeable="true" contributionURI="bundleclass://com.ping.adt.core.request.workbench.ui/com.ping.adt.core.request.workbench.ui.parts.WorkbenchView">
       <tags>View</tags>
@@ -8,15 +8,25 @@
   </fragments>
   <fragments xsi:type="fragment:StringModelFragment" xmi:id="_JnpZkK0xEe-Dqo-nmkhRdA" featurename="menuContributions" parentElementId="xpath:/">
     <elements xsi:type="menu:MenuContribution" xmi:id="_MOaAcK0xEe-Dqo-nmkhRdA" elementId="com.ping.adt.core.request.workbench.ui.menucontribution.MenuItems" positionInParent="after=com.ping.adt.core.handledmenuitem.1" parentId="com.ping.adt.core.MFD..menu.1">
-      <children xsi:type="menu:HandledMenuItem" xmi:id="_bPTMwK0xEe-Dqo-nmkhRdA" elementId="com.ping.adt.core.request.workbench.ui.handledmenuitem.item1" label="&#x5feb;&#x6377;&#x526f;&#x672c;" iconURI="platform:/plugin/com.ping.adt.core.request.workbench.ui/icons/transport.png">
+      <children xsi:type="menu:HandledMenuItem" xmi:id="_bPTMwK0xEe-Dqo-nmkhRdA" elementId="com.ping.adt.core.request.workbench.ui.handledmenuitem.item1" label="&#x5feb;&#x6377;&#x526f;&#x672c;" iconURI="platform:/plugin/com.ping.adt.core.request.workbench.ui/icons/transport.png" command="_kOccwK1XEe-Tv5-c-d9IJQ">
         <visibleWhen xsi:type="ui:ImperativeExpression" xmi:id="_Ks9J4K0zEe-Dqo-nmkhRdA" contributionURI="bundleclass://com.ping.adt.core.request.workbench.ui/com.ping.adt.core.request.workbench.ui.expressions.ShowInAbapEditor"/>
       </children>
-      <children xsi:type="menu:HandledMenuItem" xmi:id="_lzYPgK0xEe-Dqo-nmkhRdA" elementId="com.ping.adt.core.request.workbench.ui.handledmenuitem.item2" label="&#x5feb;&#x6377;QAS" iconURI="platform:/plugin/com.ping.adt.core.request.workbench.ui/icons/transport.png">
+      <children xsi:type="menu:HandledMenuItem" xmi:id="_lzYPgK0xEe-Dqo-nmkhRdA" elementId="com.ping.adt.core.request.workbench.ui.handledmenuitem.item2" label="&#x5feb;&#x6377;QAS" iconURI="platform:/plugin/com.ping.adt.core.request.workbench.ui/icons/transport.png" command="_pdt-AK1XEe-Tv5-c-d9IJQ">
         <visibleWhen xsi:type="ui:ImperativeExpression" xmi:id="_jo8JgK03Ee-Dqo-nmkhRdA" contributionURI="bundleclass://com.ping.adt.core.request.workbench.ui/com.ping.adt.core.request.workbench.ui.expressions.ShowInAbapEditor"/>
       </children>
-      <children xsi:type="menu:HandledMenuItem" xmi:id="_oBDoAK0xEe-Dqo-nmkhRdA" elementId="com.ping.adt.core.request.workbench.ui.handledmenuitem.item3" label="&#x5feb;&#x6377;PRD" iconURI="platform:/plugin/com.ping.adt.core.request.workbench.ui/icons/transport.png">
+      <children xsi:type="menu:HandledMenuItem" xmi:id="_oBDoAK0xEe-Dqo-nmkhRdA" elementId="com.ping.adt.core.request.workbench.ui.handledmenuitem.item3" label="&#x5feb;&#x6377;PRD" iconURI="platform:/plugin/com.ping.adt.core.request.workbench.ui/icons/transport.png" command="_sUwckK1XEe-Tv5-c-d9IJQ">
         <visibleWhen xsi:type="ui:ImperativeExpression" xmi:id="_mYkYgK03Ee-Dqo-nmkhRdA" contributionURI="bundleclass://com.ping.adt.core.request.workbench.ui/com.ping.adt.core.request.workbench.ui.expressions.ShowInAbapEditor"/>
       </children>
     </elements>
+  </fragments>
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_gsxFwK1XEe-Tv5-c-d9IJQ" featurename="commands" parentElementId="xpath:/">
+    <elements xsi:type="commands:Command" xmi:id="_kOccwK1XEe-Tv5-c-d9IJQ" elementId="com.ping.adt.core.request.workbench.ui.command.1" commandName="&#x5feb;&#x6377;&#x526f;&#x672c;" description="&#x5c06;&#x5f53;&#x524d;&#x5bf9;&#x8c61;&#x7684;&#x6253;&#x5305;&#x4e3a;&#x526f;&#x672c;&#x8bf7;&#x6c42;&#x5e76;&#x4f20;&#x5230;&#x6d4b;&#x8bd5;&#x7cfb;&#x7edf;" commandIconURI="platform:/plugin/com.ping.adt.core.request.workbench.ui/icons/transport.png"/>
+    <elements xsi:type="commands:Command" xmi:id="_pdt-AK1XEe-Tv5-c-d9IJQ" elementId="com.ping.adt.core.request.workbench.ui.command.2" commandName="&#x5feb;&#x6377;QAS" description="&#x5c06;&#x5f53;&#x524d;&#x5bf9;&#x8c61;&#x7684;&#x8bf7;&#x6c42;&#x76f4;&#x63a5;&#x4f20;&#x5230;&#x6d4b;&#x8bd5;&#x7cfb;&#x7edf;" commandIconURI="platform:/plugin/com.ping.adt.core.request.workbench.ui/icons/transport.png"/>
+    <elements xsi:type="commands:Command" xmi:id="_sUwckK1XEe-Tv5-c-d9IJQ" elementId="com.ping.adt.core.request.workbench.ui.command.3" commandName="&#x5feb;&#x6377;PRD" description="&#x5c06;&#x5f53;&#x524d;&#x5bf9;&#x8c61;&#x7684;&#x8bf7;&#x6c42;&#x76f4;&#x63a5;&#x4f20;&#x5230;&#x751f;&#x4ea7;&#x7cfb;&#x7edf;" commandIconURI="platform:/plugin/com.ping.adt.core.request.workbench.ui/icons/transport.png"/>
+  </fragments>
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_aRic0K1ZEe-Tv5-c-d9IJQ" featurename="handlers" parentElementId="xpath:/">
+    <elements xsi:type="commands:Handler" xmi:id="_dX_QYK1ZEe-Tv5-c-d9IJQ" elementId="com.ping.adt.core.request.workbench.ui.handler.0" contributionURI="bundleclass://com.ping.adt.core.request.workbench.ui/com.ping.adt.core.request.workbench.ui.handlers.QuickCopy" command="_kOccwK1XEe-Tv5-c-d9IJQ"/>
+    <elements xsi:type="commands:Handler" xmi:id="_gLM-4K1ZEe-Tv5-c-d9IJQ" elementId="com.ping.adt.core.request.workbench.ui.handler.1" contributionURI="bundleclass://com.ping.adt.core.request.workbench.ui/com.ping.adt.core.request.workbench.ui.handlers.QuickQAS" command="_pdt-AK1XEe-Tv5-c-d9IJQ"/>
+    <elements xsi:type="commands:Handler" xmi:id="_giePYK1ZEe-Tv5-c-d9IJQ" elementId="com.ping.adt.core.request.workbench.ui.handler.2" contributionURI="bundleclass://com.ping.adt.core.request.workbench.ui/com.ping.adt.core.request.workbench.ui.handlers.QuickPRD" command="_sUwckK1XEe-Tv5-c-d9IJQ"/>
   </fragments>
 </fragment:ModelFragments>
