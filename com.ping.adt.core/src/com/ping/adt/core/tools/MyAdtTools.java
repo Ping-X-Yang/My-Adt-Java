@@ -12,6 +12,7 @@ import org.eclipse.jface.resource.LocalResourceManager;
 import org.eclipse.jface.resource.ResourceManager;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.swt.graphics.Device;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
@@ -36,6 +37,11 @@ import org.eclipse.core.runtime.Path;
 
 
 public class MyAdtTools {
+	
+	
+	public static Shell getActiveShell() {
+		return PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+	}
 	
 
 	/**

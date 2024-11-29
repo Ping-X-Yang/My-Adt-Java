@@ -1,16 +1,20 @@
 package com.ping.adt.core.tools;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
 import org.eclipse.core.runtime.NullProgressMonitor;
 
+import com.alibaba.fastjson2.JSON;
 import com.sap.adt.communication.message.IResponse;
 import com.sap.adt.communication.resources.AdtRestResourceFactory;
 import com.sap.adt.communication.resources.IQueryParameter;
 import com.sap.adt.communication.resources.IRestResource;
+import com.sap.adt.communication.resources.QueryParameter;
 import com.sap.adt.compatibility.discovery.AdtDiscoveryFactory;
 import com.sap.adt.compatibility.discovery.IAdtDiscovery;
 import com.sap.adt.compatibility.discovery.IAdtDiscoveryCollectionMember;
@@ -47,21 +51,60 @@ public class MyRestClient {
 		return resource.get(null, IResponse.class);
 	}
 	
+	public IResponse post(Object object, Map<String, Object> queries) {
+		//转换查询参数
+		List<IQueryParameter> queryArray = new ArrayList<IQueryParameter>();
+		for (Entry<String, Object> entry : queries.entrySet()) {
+			queryArray.add(new QueryParameter(entry.getKey(), entry.getValue().toString()));
+		}
+		
+		//请求资源
+		IRestResource resource = createResource();
+		return resource.post(null, IResponse.class, JSON.toJSONString(object), (IQueryParameter[])queryArray.toArray());
+	}
+	
+	public <T> T post(Object object,Class<T> clazz, Map<String, Object> queries) {
+		int index = 0;
+		//转换查询参数
+		IQueryParameter[] queryArray = new IQueryParameter[100];
+//		List<IQueryParameter> queryArray = new ArrayList<IQueryParameter>();
+		for (Entry<String, Object> entry : queries.entrySet()) {
+//			queryArray.add(new QueryParameter(entry.getKey(), entry.getValue().toString()));
+			queryArray[ index++ ] = new QueryParameter(entry.getKey(), entry.getValue().toString());		
+		}
+		
+		//请求资源
+		IRestResource resource = createResource();
+		IResponse res = resource.post(null, IResponse.class, JSON.toJSONString(object), queryArray);
+		if (res.getStatus() != 200) {
+			System.out.println(res.getErrorInfo().toString());
+			return null;
+		}
+		
+		return JSON.parseObject(res.getBody().toString(), clazz);
+	}
+	
 //	public IResponse get(IQueryParameter arg2) {
 //		IRestResource resource = createResource();
 //		return resource.get(null, IResponse.class);
 //	}
 	
 	private IRestResource createResource() {
-		IAdtTemplateLink link = collectionMember.getTemplateLink(this.resourceName);
-		IAdtUriTemplate template = link.getUriTemplate();
+		String uriString = "";
 		
-		//填充参数
-		for (Entry<String, Object> entry : params.entrySet()) {
-			template.set(entry.getKey(), entry.getValue());
+		try {
+			IAdtTemplateLink link = collectionMember.getTemplateLink(this.resourceName);
+			IAdtUriTemplate template = link.getUriTemplate();
+			
+			//填充参数
+			for (Entry<String, Object> entry : params.entrySet()) {
+				template.set(entry.getKey(), entry.getValue());
+			}
+			uriString = template.expand();
+		} catch (Exception e) {
 		}
 		
-		URI uri = URI.create(template.expand());
+		URI uri = URI.create(uriString);
 		
 		IRestResource resource = AdtRestResourceFactory.createRestResourceFactory().createResourceWithStatelessSession(uri, project.getDestinationId());
 		

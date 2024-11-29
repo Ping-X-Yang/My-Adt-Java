@@ -15,9 +15,9 @@ public class Input {
 	public class AdtObject{
 		
 		@JSONField(name = "type")
-		String type = "";
+		public String type = "";
 		
 		@JSONField(name = "name")
-		String name = "";
+		public String name = "";
 	}
 }
