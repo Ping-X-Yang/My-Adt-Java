@@ -23,7 +23,7 @@ Require-Bundle: org.eclipse.jface,
  org.eclipse.jface.text;bundle-version="3.25.200",
  com.ping.adt.core;bundle-version="0.0.1",
  org.eclipse.jface.notifications
-Bundle-RequiredExecutionEnvironment: JavaSE-17
+Bundle-RequiredExecutionEnvironment: JavaSE-21
 Automatic-Module-Name: com.ping.adt.core.request.workbench.ui
 Import-Package: jakarta.annotation;version="[2.1.0,3.0.0)",
  jakarta.inject;version="[2.0.0,3.0.0)",

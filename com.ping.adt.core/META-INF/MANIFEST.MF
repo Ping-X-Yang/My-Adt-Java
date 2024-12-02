@@ -49,7 +49,7 @@ Require-Bundle: org.eclipse.jface,
  com.sap.adt.util.ui;bundle-version="3.46.0",
  com.sap.adt.tools.core;bundle-version="3.46.1",
  com.sap.adt.tools.core.ui;bundle-version="3.46.1"
-Bundle-RequiredExecutionEnvironment: JavaSE-17
+Bundle-RequiredExecutionEnvironment: JavaSE-21
 Automatic-Module-Name: com.ping.adt.core
 Import-Package: jakarta.annotation;version="[2.1.0,3.0.0)",
  jakarta.inject;version="[2.0.0,3.0.0)",
