@@ -8,7 +8,10 @@ import com.sap.adt.tools.core.model.adtcore.IAdtObject;
 
 public class QuickTransport {
 	
-	public static void transWithAdtObject(String action) {
+	/**
+	 * @param action 传输ABAP编辑器中的对象
+	 */
+	public static void transWithAdtObject(String action, String requestType) {
 		IEditorPart editor;
 
 		
@@ -24,7 +27,13 @@ public class QuickTransport {
 		
 		
 		//找到这个对象的请求并传输到目标系统
-		TransportObjectRequestJob job = new TransportObjectRequestJob( MyAdtTools.getActiveShell(), adtObject.getType(), adtObject.getName(), action);
+		TransportObjectRequestJob job = new TransportObjectRequestJob( 
+					MyAdtTools.getActiveShell(), 
+					adtObject.getType(), 
+					adtObject.getName(), 
+					action,
+					requestType
+					);
 		job.run();
 	}
 }

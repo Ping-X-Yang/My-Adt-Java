@@ -12,6 +12,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
 import com.ping.adt.core.request.workbench.ui.model.Input;
+import com.ping.adt.core.request.workbench.ui.model.ObjectsOutput;
 import com.ping.adt.core.request.workbench.ui.model.Output;
 import com.ping.adt.core.tools.MyRestClient;
 
@@ -33,12 +34,14 @@ public class TransportObjectRequestJob {
 	Display display;
 	
 	Job job;
+	private String requestType;
 	
-	public TransportObjectRequestJob(Shell shell, String type, String name, String action) {
+	public TransportObjectRequestJob(Shell shell, String type, String name, String action, String requestType) {
 		this.type = type;
 		this.name = name;
 		this.action = action;
 		this.shell = shell;
+		this.requestType = requestType;
 		display = shell.getDisplay();
 		
 		createJob();
@@ -49,23 +52,46 @@ public class TransportObjectRequestJob {
 	}
 
 	private void createJob() {
-		MyRestClient client = new MyRestClient("requests");
+		MyRestClient objectClient = new MyRestClient("objects");
+		MyRestClient requestsClient = new MyRestClient("requests");
 		String jobName = String.format("JOB: %s > %s", this.action, this.name);
 		job = Job.create(jobName, (ICoreRunnable) monitor -> {
 			//异步处理
 			
 			
+			//获取对象的修改请求号
+			objectClient.addParam("type", this.type);
+			objectClient.addParam("name", this.name);
+			objectClient.setResource("information");
+			ObjectsOutput objectsOutput =  objectClient.get(ObjectsOutput.class);
+			if (objectsOutput == null) {
+				return;
+			}
+			
+			//获取请求号
+			String request = "";
+			switch (this.requestType) {
+			case "R":	//请求
+				request = objectsOutput.data.currentRequest;
+				break;
+			case "T":	//任务
+				request = objectsOutput.data.currentTask;
+				break;
+			default:
+				break;
+			}
+			
+			
 			//接口入参
 			Input input = new Input();
-			input.object.type = this.type;
-			input.object.name = this.name;
+			input.requests.add(request);
 			
 			//设置参数
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("action", this.action);
 			
 			//发送请求
-			Output output = client.post(input, Output.class, map);
+			Output output = requestsClient.post(input, Output.class, map);
 			
 			
 			//UI同步
@@ -74,13 +100,13 @@ public class TransportObjectRequestJob {
 				@Override
 				public void run() {
 					// TODO Auto-generated method stub
-					String message = "";
+					String message = null;
 					
 					if (output == null) {
 						return;
 					}
 					
-					message = "传输成功";
+					
 					if (output.status.code == 0) {
 						//报错
 						message = "服务处理异常";
@@ -91,12 +117,16 @@ public class TransportObjectRequestJob {
 						message = output.data.get(0).message.get(0).message;
 					}
 					
+					if(message == null) {
+						String.format("%s传输成功!!!", input.requests.get(0));
+					}
+					
 					
 					NotificationPopup
 						.forDisplay(display)
 //						.forShell(shell)
 						.text(message)
-						.title("请求传输", true)
+						.title("请求传输通知", true)
 						.delay(10000)			//10秒
 						.fadeIn(true)
 						.open();

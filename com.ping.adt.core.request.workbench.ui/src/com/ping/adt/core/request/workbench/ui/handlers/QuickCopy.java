@@ -12,7 +12,7 @@ public class QuickCopy {
 	public void execute() {
 		
 		//一键打包副本并导入测试系统
-		QuickTransport.transWithAdtObject("one_key_copy");
+		QuickTransport.transWithAdtObject("one_key_copy", "T");
 		
 	}
 	

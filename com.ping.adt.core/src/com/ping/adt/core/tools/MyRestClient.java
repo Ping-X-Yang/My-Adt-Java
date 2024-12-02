@@ -51,6 +51,12 @@ public class MyRestClient {
 		return resource.get(null, IResponse.class);
 	}
 	
+	public <T> T get(Class<T> clazz) {
+		IRestResource resource = createResource();
+		IResponse res =  resource.get(null, IResponse.class);
+		return JSON.parseObject(res.getBody().toString(), clazz);
+	}
+	
 	public IResponse post(Object object, Map<String, Object> queries) {
 		//转换查询参数
 		List<IQueryParameter> queryArray = new ArrayList<IQueryParameter>();
