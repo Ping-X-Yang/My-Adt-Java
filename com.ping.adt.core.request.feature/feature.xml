@@ -2,7 +2,7 @@
 <feature
       id="com.ping.adt.core.request.feature"
       label="Request Feature"
-      version="0.0.1"
+      version="0.0.2"
       provider-name="Ping">
 
    <description url="http://www.example.com/description">
