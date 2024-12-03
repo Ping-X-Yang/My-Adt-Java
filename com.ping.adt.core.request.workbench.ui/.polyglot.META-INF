@@ -8,10 +8,10 @@
     <version>0.0.1</version>
     <relativePath>..\pom.xml</relativePath>
   </parent>
-  <artifactId>com.ping.adt.core</artifactId>
-  <version>0.0.2</version>
+  <artifactId>com.ping.adt.core.request.workbench.ui</artifactId>
+  <version>0.0.1</version>
   <packaging>eclipse-plugin</packaging>
-  <name>[bundle] My Adt Core</name>
+  <name>[bundle] Request Workbench</name>
   <organization>
     <name>Ping</name>
   </organization>

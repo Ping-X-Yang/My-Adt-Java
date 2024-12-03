@@ -118,7 +118,7 @@ public class TransportObjectRequestJob {
 					}
 					
 					if(message == null) {
-						String.format("%s传输成功!!!", input.requests.get(0));
+						message = String.format("%s传输成功!!!", input.requests.get(0));
 					}
 					
 					
