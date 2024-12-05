@@ -10,7 +10,6 @@
             uri="fragment.e4xmi">
       </fragment>
       <processor
-            apply="initial"
             beforefragment="true"
             class="com.ping.adt.sapgui.quicklogin.internal.InitProcessor">
       </processor>
