@@ -11,9 +11,14 @@ public class MyPlugin {
 
 	public static LoginConfigurationListModel model;
 	public static String path;
+	
+	
+	static {
+		init();
+	}
 
 	static void init() {
-
+		
 		// 加载配置
 		// 避免重复从文件系统中读取配置
 		loadConfiguration();
@@ -21,6 +26,11 @@ public class MyPlugin {
 	}
 
 	private static void loadConfiguration() {
+		
+		if (model != null && path != null) {
+			return;
+		}
+		
 		String modelJson = "";
 
 		ISecurePreferences preferences = SecurePreferencesFactory.getDefault();
