@@ -12,9 +12,9 @@
     </elements>
   </fragments>
   <fragments xsi:type="fragment:StringModelFragment" xmi:id="_pVgfIIrOEeW7h_qdP9N9fw" featurename="menuContributions" parentElementId="xpath:/">
-    <elements xsi:type="menu:MenuContribution" xmi:id="_tSwX0IrOEeW7h_qdP9N9fw" elementId="com.ping.adt.sapgui.quicklogin.MFD.menucontribution" positionInParent="after=additions" parentId="org.eclipse.ui.main.menu">
+    <elements xsi:type="menu:MenuContribution" xmi:id="_tSwX0IrOEeW7h_qdP9N9fw" elementId="com.ping.adt.sapgui.quicklogin.MFD.menucontribution" positionInParent="after=help" parentId="org.eclipse.ui.main.menu">
       <persistedState key="persistState" value="false"/>
-      <children xsi:type="menu:Menu" xmi:id="_wg9ZMIrOEeW7h_qdP9N9fw" elementId="com.ping.adt.sapgui.quicklogin.MFD.menu.quicklogin" label="&#x5feb;&#x901f;&#x767b;&#x5f55;">
+      <children xsi:type="menu:Menu" xmi:id="_wg9ZMIrOEeW7h_qdP9N9fw" elementId="com.ping.adt.sapgui.quicklogin.MFD.menu.quicklogin" label="&#x5feb;&#x6377;&#x767b;&#x5f55;">
         <children xsi:type="menu:DynamicMenuContribution" xmi:id="_niVJwLLFEe-0aaawiPMLmA" elementId="com.ping.adt.sapgui.quicklogin.MFD.dynamicmenucontribution" label="&#x52a8;&#x6001;&#x83dc;&#x5355;&#x8d21;&#x732e;" contributionURI="bundleclass://com.ping.adt.sapgui.quicklogin/com.ping.adt.core.request.workbench.ui.handlers.DynamicMenu"/>
       </children>
     </elements>

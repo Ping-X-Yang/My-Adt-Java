@@ -61,7 +61,7 @@ public class QuickLoginCongurationPage extends PreferencePage implements IWorkbe
 		this.path = MyPlugin.path;
 		this.model = MyPlugin.model;
 
-		setDescription("快捷登录SAPGUI配置页");
+		setDescription("***For Window***\n1. 系统名称来源SAP Logon Pad\n2. 确保SAP Logon Pad系统名称唯一\n3、 菜单项名称***必须唯一***");
 	}
 
 	@Override

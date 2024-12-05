@@ -20,7 +20,7 @@
       <page
             class="com.ping.adt.sapgui.quicklogin.PreferencePage.QuickLoginCongurationPage"
             id="com.ping.adt.sapgui.quicklogin.QuickLoginCongurationPage"
-            name="快捷登录SAP GUI配置">
+            name="快捷登录配置页">
       </page>
    </extension>
 
