@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         id="com.ping.adt.sapgui.quicklogin.fragment"
+         point="org.eclipse.e4.workbench.model">
+      <fragment
+            apply="always"
+            uri="fragment.e4xmi">
+      </fragment>
+      <processor
+            apply="initial"
+            beforefragment="true"
+            class="com.ping.adt.sapgui.quicklogin.internal.InitProcessor">
+      </processor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="com.ping.adt.sapgui.quicklogin.PreferencePage.QuickLoginCongurationPage"
+            id="com.ping.adt.sapgui.quicklogin.QuickLoginCongurationPage"
+            name="快捷登录SAP GUI配置">
+      </page>
+   </extension>
+
+</plugin>

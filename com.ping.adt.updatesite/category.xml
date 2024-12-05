@@ -9,6 +9,9 @@
    <feature id="com.ping.adt.core.request.feature">
       <category name="com.ping.adt.category.MyAdtPlugins"/>
    </feature>
+   <feature id="com.ping.adt.sapgui.feature">
+      <category name="com.ping.adt.category.MyAdtPlugins"/>
+   </feature>
    <category-def name="com.ping.adt.category.MyAdtPlugins" label="My Adt Plugins">
       <description>
          我的Adt插件集

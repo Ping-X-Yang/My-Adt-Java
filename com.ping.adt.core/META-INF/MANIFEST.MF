@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: My Adt Core
 Bundle-SymbolicName: com.ping.adt.core;singleton:=true
-Bundle-Version: 0.0.2
+Bundle-Version: 0.0.3
 Export-Package: com.alibaba.fastjson2,
  com.alibaba.fastjson2.annotation,
  com.alibaba.fastjson2.codec,
@@ -22,10 +22,12 @@ Export-Package: com.alibaba.fastjson2,
  com.alibaba.fastjson2.support.money,
  com.alibaba.fastjson2.util,
  com.alibaba.fastjson2.writer,
- com.ping.adt.core.tools
+ com.ping.adt.core.tools,
+ org.apache.commons.exec
 Bundle-Activator: com.ping.adt.core.Activator
 Bundle-ClassPath: libs/fastjson2-2.0.53.jar,
- .
+ .,
+ libs/commons-exec-1.4.0.jar
 Bundle-Vendor: Ping
 Require-Bundle: org.eclipse.jface,
  org.eclipse.ui,

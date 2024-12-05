@@ -82,6 +82,9 @@
     <module>com.ping.adt.core.request.feature</module>
     <module>com.ping.adt.core.request.workbench.ui</module>
 
+    <module>com.ping.adt.sapgui.feature</module>
+    <module>com.ping.adt.sapgui.quicklogin</module>
+
     <module>com.ping.adt.updatesite</module>
   </modules>
 

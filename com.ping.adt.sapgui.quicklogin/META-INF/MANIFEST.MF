@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Quick Login
+Bundle-SymbolicName: com.ping.adt.sapgui.quicklogin;singleton:=true
+Bundle-Version: 0.0.1
+Bundle-Activator: com.ping.adt.sapgui.quicklogin.Activator
+Bundle-Vendor: Ping
+Require-Bundle: org.eclipse.jface,
+ org.eclipse.e4.ui.services,
+ org.eclipse.e4.core.di.annotations,
+ org.eclipse.core.runtime,
+ org.eclipse.e4.ui.model.workbench,
+ org.eclipse.e4.ui.di,
+ com.ping.adt.core,
+ org.eclipse.equinox.security,
+ org.eclipse.ui,
+ com.sap.adt.destinations.model,
+ org.eclipse.e4.core.di,
+ org.eclipse.e4.core.commands
+Bundle-RequiredExecutionEnvironment: JavaSE-21
+Automatic-Module-Name: com.ping.adt.sapgui.quicklogin
+Import-Package: jakarta.annotation;version="[2.1.0,3.0.0)",
+ jakarta.inject;version="[2.0.0,3.0.0)",
+ org.osgi.framework;version="[1.10.0,2.0.0)"
+Bundle-ActivationPolicy: lazy
