@@ -28,6 +28,12 @@ public class Output {
 		@JSONField(name = "request")
 		public String request = "";
 		
+		@JSONField(name = "username")
+		public String username = "";
+		
+		@JSONField(name = "text")
+		public String text = "";
+		
 		@JSONField(name = "message")
 		public List<RequestMessage> message = new ArrayList<RequestMessage>();
 	}

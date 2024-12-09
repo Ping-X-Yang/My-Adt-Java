@@ -1,5 +1,6 @@
 package com.ping.adt.core.request.workbench.ui.QuickTransport;
 
+import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.ui.IEditorPart;
 
 import com.ping.adt.core.request.workbench.ui.jobs.TransportObjectRequestJob;
@@ -11,7 +12,7 @@ public class QuickTransport {
 	/**
 	 * @param action 传输ABAP编辑器中的对象
 	 */
-	public static void transWithAdtObject(String action, String requestType) {
+	public static void transWithAdtObject(String action, String requestType, IEventBroker eventBroker) {
 		IEditorPart editor;
 
 		
@@ -32,7 +33,8 @@ public class QuickTransport {
 					adtObject.getType(), 
 					adtObject.getName(), 
 					action,
-					requestType
+					requestType,
+					eventBroker
 					);
 		job.run();
 	}

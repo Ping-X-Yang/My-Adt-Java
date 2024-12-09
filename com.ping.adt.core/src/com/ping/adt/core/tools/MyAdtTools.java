@@ -43,6 +43,13 @@ public class MyAdtTools {
 		return PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 	}
 	
+	public static IWorkbenchPage getActivePage() {
+		return PlatformUI
+				.getWorkbench()
+				.getActiveWorkbenchWindow()
+				.getActivePage();
+	}
+	
 
 	/**
 	 * 获取活动项目对象

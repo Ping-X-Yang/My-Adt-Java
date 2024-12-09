@@ -1,16 +1,20 @@
 package com.ping.adt.core.request.workbench.ui.jobs;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.core.runtime.ICoreRunnable;
 import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.e4.ui.di.UISynchronize;
 import org.eclipse.e4.ui.services.IServiceConstants;
 import org.eclipse.jface.notifications.NotificationPopup;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
+import com.ping.adt.core.request.workbench.ui.common.MyPluginContants;
+import com.ping.adt.core.request.workbench.ui.events.MessageTool;
 import com.ping.adt.core.request.workbench.ui.model.Input;
 import com.ping.adt.core.request.workbench.ui.model.ObjectsOutput;
 import com.ping.adt.core.request.workbench.ui.model.Output;
@@ -31,18 +35,21 @@ public class TransportObjectRequestJob {
 	@Inject
 	UISynchronize sync;
 	
+	IEventBroker broker;
+	
 	Display display;
 	
 	Job job;
 	private String requestType;
 	
-	public TransportObjectRequestJob(Shell shell, String type, String name, String action, String requestType) {
+	public TransportObjectRequestJob(Shell shell, String type, String name, String action, String requestType, IEventBroker eventBroker) {
 		this.type = type;
 		this.name = name;
 		this.action = action;
 		this.shell = shell;
 		this.requestType = requestType;
 		display = shell.getDisplay();
+		this.broker = eventBroker;
 		
 		createJob();
 	}
@@ -71,10 +78,10 @@ public class TransportObjectRequestJob {
 			//获取请求号
 			String request = "";
 			switch (this.requestType) {
-			case "R":	//请求
+			case MyPluginContants.REQUEST:	//请求
 				request = objectsOutput.data.currentRequest;
 				break;
-			case "T":	//任务
+			case MyPluginContants.TASK:	//任务
 				request = objectsOutput.data.currentTask;
 				break;
 			default:
@@ -121,47 +128,35 @@ public class TransportObjectRequestJob {
 						message = String.format("%s传输成功!!!", input.requests.get(0));
 					}
 					
+					String title = "";
+					switch (action) {
+					case MyPluginContants.ONE_KEY_COPY:	//请求
+						title = "快捷副本";
+						break;
+					case MyPluginContants.ONE_KEY_QAS:	//任务
+						title = "快捷QAS";
+						break;
+					case MyPluginContants.ONE_KEY_PRD:	//任务
+						title = "快捷PRD";
+						break;
+					default:
+						break;
+					}
 					
-					NotificationPopup
-						.forDisplay(display)
-//						.forShell(shell)
-						.text(message)
-						.title("请求传输通知", true)
-						.delay(10000)			//10秒
-						.fadeIn(true)
-						.open();
+					//发送消息
+					MessageTool.PostMessage(broker, "com.ping.adt.core.request.workbench.ui.WorkbenchView", title, output.data);
+					
+//					NotificationPopup
+//						.forDisplay(display)
+////						.forShell(shell)
+//						.text(message)
+//						.title("请求传输通知", true)
+//						.delay(10000)			//10秒
+//						.fadeIn(true)
+//						.open();
 				}
 			});
 			
-//			sync.asyncExec(() -> {
-//				String message = "";
-//				
-//				if (output == null) {
-//					return;
-//				}
-//				
-//				if (output.status.code == 0) {
-//					//报错
-//					message = "服务处理异常";
-//					return;
-//				}
-//				
-//				if (output.data.message.size() > 0) {
-//					//报错
-//					message = output.data.message.get(0).message;
-//					return;
-//				}
-//				
-//				message = "传输成功";
-//				NotificationPopup
-//					.forShell(shell)
-//					.text(message)
-//					.title("请求传输", true)
-//					.delay(10000)			//10秒
-//					.fadeIn(true)
-//					.open();
-//				
-//			});
 		});
 		
 	}
