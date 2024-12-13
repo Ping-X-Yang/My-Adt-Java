@@ -23,7 +23,13 @@ Require-Bundle: org.eclipse.jface,
  org.eclipse.jface.text;bundle-version="3.25.200",
  com.ping.adt.core;bundle-version="0.0.1",
  org.eclipse.jface.notifications,
- org.eclipse.e4.core.services;bundle-version="2.4.400"
+ org.eclipse.e4.core.services;bundle-version="2.4.400",
+ com.sap.adt.tm.ui;bundle-version="1.200.0",
+ org.osgi.service.prefs,
+ org.eclipse.core.resources,
+ com.sap.adt.util;bundle-version="3.46.0",
+ com.sap.adt.destinations.model,
+ com.sap.adt.communication
 Bundle-RequiredExecutionEnvironment: JavaSE-21
 Automatic-Module-Name: com.ping.adt.core.request.workbench.ui
 Import-Package: jakarta.annotation;version="[2.1.0,3.0.0)",

@@ -78,6 +78,21 @@ public class MyAdtTools {
 		return project;
 	}
 	
+	/**
+	 * 获取活动项目
+	 * @param selection
+	 * @return
+	 */
+	public static IProject getActiveProject(ISelection selection) { 
+		System.out.println("获取活动的项目");
+
+		//获取活动项目
+		IProject project = ProjectUtil
+								.getActiveAdtCoreProject(selection, null, null, IAdtCoreProject.ABAP_PROJECT_NATURE);
+		
+		return project;
+	}
+	
 	
 	/**
 	 * 获取活动的ADT项目对象
@@ -135,6 +150,21 @@ public class MyAdtTools {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
+	}
+	
+	/**
+	 * 确保登录
+	 * @param project 项目
+	 */
+	public static boolean isLoggedOn(IProject project) {
+		boolean logged = false;
+		try {
+			IAdtCoreProject adtProject = project.getAdapter(IAdtCoreProject.class);
+			logged = AdtLogonServiceFactory.createLogonService().isLoggedOn(adtProject.getDestinationId());
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return logged;
 	}
 	
 	

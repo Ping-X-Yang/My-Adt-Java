@@ -25,6 +25,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 
 import com.alibaba.fastjson2.JSON;
+import com.ping.adt.core.request.workbench.ui.common.MyPluginContants;
 import com.ping.adt.core.request.workbench.ui.events.IRequestEventConstants;
 import com.ping.adt.core.request.workbench.ui.events.Message;
 import com.ping.adt.core.request.workbench.ui.model.Output.Data;
@@ -60,6 +61,16 @@ public class WorkbenchView {
 		
 		
 		System.out.println("点击：");
+	}
+	
+	@Inject
+	@Optional
+	public void handleToolbarEvents(
+			@UIEventTopic(MyPluginContants.EVENT_TOOLBAR) String parameter
+			) {
+		
+		requestWorkbenchView.handleToolbarEvents(parameter);
+		
 	}
 	
 }

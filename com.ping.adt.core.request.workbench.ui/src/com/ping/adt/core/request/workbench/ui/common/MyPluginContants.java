@@ -8,4 +8,10 @@ public interface MyPluginContants {
 	final String TASK = "T";		//任务
 	final String REQUEST = "R";		//请求
 	
+	final String SETTING_ID = "com.ping.adt.core.request.workbench.ui.setting";
+	
+	final String REQUEST_WORKBENCH_VIEW_ID = "com.ping.adt.core.request.workbench.ui.WorkbenchView";
+	
+	final String EVENT_TOOLBAR = "WorkbenchView/event/toolbar";
+	
 }
