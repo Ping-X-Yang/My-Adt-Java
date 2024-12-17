@@ -10,6 +10,7 @@ import java.util.Date;
 import javax.naming.InitialContext;
 
 import org.eclipse.e4.core.di.annotations.Optional;
+import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.e4.ui.di.Focus;
 import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.e4.ui.services.IServiceConstants;
@@ -35,11 +36,13 @@ import com.ping.adt.core.tools.MyAdtTools;
 public class WorkbenchView {
 	RequestWorkbenchView requestWorkbenchView;
 	
+	@Inject
+	IEventBroker broker;
 	
 	@PostConstruct
 	public void createPartControl(Composite parent) {
 		parent.setLayout(new FillLayout());
-		requestWorkbenchView = new RequestWorkbenchView(parent);
+		requestWorkbenchView = new RequestWorkbenchView(parent,broker);
 		requestWorkbenchView.createContents();
 
 	}

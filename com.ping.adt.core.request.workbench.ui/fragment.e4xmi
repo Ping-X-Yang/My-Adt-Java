@@ -17,8 +17,14 @@
         <children xsi:type="menu:HandledToolItem" xmi:id="_yjKEoLeAEe-1otoPagVtdw" elementId="com.ping.adt.core.request.workbench.ui.handledtoolitem.2" label="&#x4e00;&#x952e;PRD" command="_2DWz8LeLEe-1otoPagVtdw">
           <parameters xmi:id="_0IxhILeMEe-1otoPagVtdw" elementId="com.ping.adt.core.request.workbench.ui.parameter.3" name="com.ping.adt.core.request.workbench.ui.commandparameter.toolbar" value="one_prd"/>
         </children>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_XSYnoLxNEe-H39xvjtFjkw" elementId="com.ping.adt.core.request.workbench.ui.handledtoolitem.0" iconURI="platform:/plugin/com.ping.adt.core.request.workbench.ui/icons/unSelectAllIcon.png" tooltip="&#x53d6;&#x6d88;&#x5168;&#x9009;" command="_2DWz8LeLEe-1otoPagVtdw">
+          <parameters xmi:id="_fH81sLxNEe-H39xvjtFjkw" elementId="com.ping.adt.core.request.workbench.ui.parameter.6" name="com.ping.adt.core.request.workbench.ui.commandparameter.toolbar" value="unSelectAll"/>
+        </children>
         <children xsi:type="menu:HandledToolItem" xmi:id="_4OQw0LeBEe-1otoPagVtdw" elementId="com.ping.adt.core.request.workbench.ui.handledtoolitem.2" label="&#x5237;&#x65b0;" iconURI="platform:/plugin/com.ping.adt.core.request.workbench.ui/icons/refreshIcon.png" command="_2DWz8LeLEe-1otoPagVtdw">
           <parameters xmi:id="_189bkLeMEe-1otoPagVtdw" elementId="com.ping.adt.core.request.workbench.ui.parameter.4" name="com.ping.adt.core.request.workbench.ui.commandparameter.toolbar" value="refresh"/>
+        </children>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_atCesLxPEe-H39xvjtFjkw" elementId="com.ping.adt.core.request.workbench.ui.handledtoolitem.3" iconURI="platform:/plugin/com.ping.adt.core.request.workbench.ui/icons/clearLogsIcon.png" tooltip="&#x6e05;&#x7a7a;&#x65e5;&#x5fd7;" command="_2DWz8LeLEe-1otoPagVtdw">
+          <parameters xmi:id="_dciK0LxPEe-H39xvjtFjkw" elementId="com.ping.adt.core.request.workbench.ui.parameter.7" name="com.ping.adt.core.request.workbench.ui.commandparameter.toolbar" value="clearLogs"/>
         </children>
         <children xsi:type="menu:HandledToolItem" xmi:id="_C01G4LeCEe-1otoPagVtdw" elementId="com.ping.adt.core.request.workbench.ui.handledtoolitem." label="" iconURI="platform:/plugin/com.ping.adt.core.request.workbench.ui/icons/setting.png" tooltip="&#x8bbe;&#x7f6e;" command="_2DWz8LeLEe-1otoPagVtdw">
           <parameters xmi:id="_3rI0oLeMEe-1otoPagVtdw" elementId="com.ping.adt.core.request.workbench.ui.parameter.5" name="com.ping.adt.core.request.workbench.ui.commandparameter.toolbar" value="setting"/>

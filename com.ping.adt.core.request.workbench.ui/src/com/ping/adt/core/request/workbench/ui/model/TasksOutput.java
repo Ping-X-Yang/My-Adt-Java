@@ -79,6 +79,15 @@ public class TasksOutput {
 		@JSONField(name = "objectName")
 		public String objectName = "";
 		
+		@JSONField(name = "workbenchObjectType")
+		public String workbenchObjectType = "";
+		
+		@JSONField(name = "objectTypeText")
+		public String objectTypeText = "";
+		
+		@JSONField(name = "objectText")
+		public String objectText = "";
+		
 	}
 	
 }
