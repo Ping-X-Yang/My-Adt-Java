@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: My Adt Core
 Bundle-SymbolicName: com.ping.adt.core;singleton:=true
-Bundle-Version: 0.0.5
+Bundle-Version: 0.0.7
 Export-Package: com.alibaba.fastjson2,
  com.alibaba.fastjson2.annotation,
  com.alibaba.fastjson2.codec,

@@ -116,10 +116,10 @@ public class RequestWorkbenchView {
 		
 		try {
 			output = client.get(RequestOutput.class, query);
+			requestModel.addNode(output);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		requestModel.addNode(output);
 	}
 
 	private void createTreeViewer(Composite mainContainer2) {
