@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ASCII"?>
 <fragment:ModelFragments xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/descriptor/basic" xmlns:commands="http://www.eclipse.org/ui/2010/UIModel/application/commands" xmlns:fragment="http://www.eclipse.org/ui/2010/UIModel/fragment" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmlns:ui="http://www.eclipse.org/ui/2010/UIModel/application/ui" xmi:id="_BxaXACerEeWxCPrV0pAZQQ">
   <fragments xsi:type="fragment:StringModelFragment" xmi:id="_EI7oACerEeWxCPrV0pAZQQ" featurename="descriptors" parentElementId="xpath:/">
-    <elements xsi:type="basic:PartDescriptor" xmi:id="_KMklcCerEeWxCPrV0pAZQQ" elementId="com.ping.adt.core.request.workbench.ui.WorkbenchView" label="Request Workbench View" iconURI="platform:/plugin/com.ping.adt.core.request.workbench.ui/icons/Sample.png" tooltip="" category="My ADT Plugins" closeable="true" contributionURI="bundleclass://com.ping.adt.core.request.workbench.ui/com.ping.adt.core.request.workbench.ui.parts.WorkbenchView">
+    <elements xsi:type="basic:PartDescriptor" xmi:id="_KMklcCerEeWxCPrV0pAZQQ" elementId="com.ping.adt.core.request.workbench.ui.WorkbenchView" label="Request Workbench View" iconURI="platform:/plugin/com.ping.adt.core.request.workbench.ui/icons/Sample.png" tooltip="" category="My ADT Plugins" contributionURI="bundleclass://com.ping.adt.core.request.workbench.ui/com.ping.adt.core.request.workbench.ui.parts.WorkbenchView">
       <tags>View</tags>
       <tags>categoryTag:My Adt Plugins</tags>
       <toolbar xmi:id="_23dn4Ld_Ee-1otoPagVtdw" elementId="com.ping.adt.core.request.workbench.ui.toolbar.0">
@@ -53,7 +53,7 @@
     <elements xsi:type="commands:Command" xmi:id="_pdt-AK1XEe-Tv5-c-d9IJQ" elementId="com.ping.adt.core.request.workbench.ui.command.2" commandName="&#x5feb;&#x6377;QAS" description="&#x5c06;&#x5f53;&#x524d;&#x5bf9;&#x8c61;&#x7684;&#x8bf7;&#x6c42;&#x76f4;&#x63a5;&#x4f20;&#x5230;&#x6d4b;&#x8bd5;&#x7cfb;&#x7edf;" commandIconURI="platform:/plugin/com.ping.adt.core.request.workbench.ui/icons/transport.png"/>
     <elements xsi:type="commands:Command" xmi:id="_sUwckK1XEe-Tv5-c-d9IJQ" elementId="com.ping.adt.core.request.workbench.ui.command.3" commandName="&#x5feb;&#x6377;PRD" description="&#x5c06;&#x5f53;&#x524d;&#x5bf9;&#x8c61;&#x7684;&#x8bf7;&#x6c42;&#x76f4;&#x63a5;&#x4f20;&#x5230;&#x751f;&#x4ea7;&#x7cfb;&#x7edf;" commandIconURI="platform:/plugin/com.ping.adt.core.request.workbench.ui/icons/transport.png"/>
     <elements xsi:type="commands:Command" xmi:id="_2DWz8LeLEe-1otoPagVtdw" elementId="com.ping.adt.core.request.workbench.ui.command.4" commandName="Toolbar&#x547d;&#x4ee4;">
-      <parameters xmi:id="_Q9KH8LeMEe-1otoPagVtdw" elementId="com.ping.adt.core.request.workbench.ui.commandparameter.toolbar" name="&#x5de5;&#x5177;&#x680f;&#x547d;&#x4ee4;" optional="false"/>
+      <parameters xmi:id="_Q9KH8LeMEe-1otoPagVtdw" elementId="com.ping.adt.core.request.workbench.ui.commandparameter.toolbar" name="&#x5de5;&#x5177;&#x680f;&#x547d;&#x4ee4;"/>
     </elements>
     <elements xsi:type="commands:Command" xmi:id="_ZCZBALj9Ee-JBtT2UO1EOQ" elementId="com.ping.adt.core.request.workbench.ui.command.5" commandName="&#x6253;&#x5f00;&#x8bf7;&#x6c42;&#x5de5;&#x4f5c;&#x53f0;"/>
   </fragments>

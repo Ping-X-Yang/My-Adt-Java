@@ -65,6 +65,7 @@ public class RequestWorkbenchView {
 	RequestWorkbenchView(Composite parent, IEventBroker broker) {
 		this.parent = parent;
 		this.broker = broker;
+		requestModel = new TransportRequestModel();
 	}
 
 	public void createContents() {
@@ -78,12 +79,13 @@ public class RequestWorkbenchView {
 	}
 
 	private void initRequestTreeView() {
-		requestModel = new TransportRequestModel();
 		initData();
 		createTreeViewer(mainContainer);
 	}
 
 	private void initData() {
+		RequestOutput output = null;
+		
 		SettingModel settingModel = new SettingModel();
 		List<IQueryParameter> query = new ArrayList<IQueryParameter>();
 		query.add(new QueryParameter("user", settingModel.getUserName()));
@@ -111,10 +113,13 @@ public class RequestWorkbenchView {
 		query.add(new QueryParameter("end_date", settingModel.getToDateText()));
 
 		MyRestClient client = new MyRestClient("requests");
-		RequestOutput output = client.get(RequestOutput.class, query);
-
+		
+		try {
+			output = client.get(RequestOutput.class, query);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		requestModel.addNode(output);
-
 	}
 
 	private void createTreeViewer(Composite mainContainer2) {

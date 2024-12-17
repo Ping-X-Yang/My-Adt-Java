@@ -64,6 +64,7 @@ public class MyRestClient {
 	}
 
 	public <T> T get(Class<T> clazz, List<IQueryParameter> queries) {
+		IResponse res = null;
 		int index = 0;
 		IQueryParameter[] queryArray = new IQueryParameter[100];
 		for (IQueryParameter query : queries) {
@@ -71,7 +72,11 @@ public class MyRestClient {
 		}
 		
 		IRestResource resource = createResource();
-		IResponse res = resource.get(null, IResponse.class, queryArray);
+		if (queryArray.length == 0) {
+			res = resource.get(null, IResponse.class);
+		}else {
+			res = resource.get(null, IResponse.class, queryArray);
+		}
 		return JSON.parseObject(res.getBody().toString(), clazz);
 	}
 
