@@ -217,4 +217,8 @@ public class RequestNode {
 		this.objectName = objectName;
 	}
 	
+	public void removeAll() {
+		getChildren().clear();
+	}
+	
 }

@@ -88,6 +88,7 @@ public class SettingModel {
 	private boolean isToDateTextEnabled;
 	private String fromDateText;
 	private String toDateText;
+	private boolean isRequestObjectVisible;
 //	   private String selectedTreeLevelsHierarchy;
 
 	public SettingModel() {
@@ -100,11 +101,12 @@ public class SettingModel {
 		setModifiable(Boolean.valueOf(preference.get("isModifiable", "true")));
 		setReleased(Boolean.valueOf(preference.get("isReleased", "true")));
 		setFilterReleasedComboEnabled(Boolean.valueOf(preference.get("isFilterReleasedComboEnabled", "true")));
-		setFilterReleasedComboSelection(Integer.valueOf(preference.get("filterReleasedComboSelection", "1")));
+		setFilterReleasedComboSelection(Integer.valueOf(preference.get("filterReleasedComboSelection", "2")));	//默认查最近一个月的请求
 		setFromDateTextEnabled(Boolean.valueOf(preference.get("isFromDateTextEnabled", "")));
 		setToDateTextEnabled(Boolean.valueOf(preference.get("isToDateTextEnabled", "")));
 		setFromDateText(preference.get("fromDateText", ""));
 		setToDateText(preference.get("toDateText", ""));
+		setRequestObjectVisible(Boolean.valueOf(preference.get("isRequestObjectVisible", "true")));
 	}
 
 	public void clearAll() {
@@ -268,12 +270,21 @@ public class SettingModel {
 		preference.put("isToDateTextEnabled", String.valueOf(isToDateTextEnabled()));
 		preference.put("fromDateText", getFromDateText());
 		preference.put("toDateText", getToDateText());
+		preference.put("isRequestObjectVisible", String.valueOf(isRequestObjectVisible()));
 		
 		try {
 			preference.flush();
 		} catch (BackingStoreException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public boolean isRequestObjectVisible() {
+		return isRequestObjectVisible;
+	}
+
+	public void setRequestObjectVisible(boolean isRequestObjectVisible) {
+		this.isRequestObjectVisible = isRequestObjectVisible;
 	}
 
 }

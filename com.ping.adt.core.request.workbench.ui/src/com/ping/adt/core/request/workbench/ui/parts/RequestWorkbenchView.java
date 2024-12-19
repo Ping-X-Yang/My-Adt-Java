@@ -16,6 +16,7 @@ import org.eclipse.jface.viewers.DelegatingStyledCellLabelProvider;
 import org.eclipse.jface.viewers.ITreeViewerListener;
 import org.eclipse.jface.viewers.TreeExpansionEvent;
 import org.eclipse.jface.viewers.TreeViewerColumn;
+import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.custom.StyleRange;
@@ -28,6 +29,7 @@ import org.eclipse.swt.widgets.Tree;
 import com.ping.adt.core.request.workbench.ui.events.Message;
 import com.ping.adt.core.request.workbench.ui.jobs.AsyncUpdateTaskNode;
 import com.ping.adt.core.request.workbench.ui.jobs.BackendJob;
+import com.ping.adt.core.request.workbench.ui.jobs.InitRequestModelJob;
 import com.ping.adt.core.request.workbench.ui.model.Output.Data;
 import com.ping.adt.core.request.workbench.ui.model.Output.RequestMessage;
 import com.ping.adt.core.request.workbench.ui.model.RequestNode;
@@ -59,7 +61,6 @@ public class RequestWorkbenchView {
 	CheckboxTreeViewer treeViewer;
 	TransportRequestModel requestModel;
 
-	
 	IEventBroker broker;
 
 	RequestWorkbenchView(Composite parent, IEventBroker broker) {
@@ -79,47 +80,63 @@ public class RequestWorkbenchView {
 	}
 
 	private void initRequestTreeView() {
-		initData();
 		createTreeViewer(mainContainer);
+		initData();
 	}
 
 	private void initData() {
-		RequestOutput output = null;
+//		RequestOutput output = null;
+//
+//		SettingModel settingModel = new SettingModel();
+//		List<IQueryParameter> query = new ArrayList<IQueryParameter>();
+//		query.add(new QueryParameter("user", settingModel.getUserName()));
+//
+//		// 请求释放状态
+//		if (settingModel.isModifiable()) {
+//			query.add(new QueryParameter("status", "D")); // 可修改
+//		}
+//		if (settingModel.isModifiable()) {
+//			query.add(new QueryParameter("status", "R")); // 已释放
+//		}
+//
+//		// 请求类型
+//		if (settingModel.isWorkbench()) {
+//			query.add(new QueryParameter("function", "K")); // 工作台请求
+//		}
+//		if (settingModel.isCustomizing()) {
+//			query.add(new QueryParameter("function", "W")); // 定制请求
+//		}
+//		if (settingModel.isTransportofCopies()) {
+//			query.add(new QueryParameter("function", "T")); // 副本请求
+//		}
+//
+//		query.add(new QueryParameter("start_date", settingModel.getFromDateText()));
+//		query.add(new QueryParameter("end_date", settingModel.getToDateText()));
+//
+//		MyRestClient client = new MyRestClient("requests");
+//
+//		try {
+//			output = client.get(RequestOutput.class, query);
+//			requestModel.removeAll();
+//			requestModel.addNode(output);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//
+//		// 需要展开的节点，默认展开每层额第一个节点
+//		// 一直展到请求层
+//		try {
+//			List<RequestNode> expandNode = new ArrayList<RequestNode>();
+//			expandNode.add(requestModel.getChildren().get(0)); // 请求类型层
+//			expandNode.add(requestModel.getChildren().get(0).getChildren().get(0));
+//			expandNode.add(requestModel.getChildren().get(0).getChildren().get(0).getChildren().get(0));
+//			treeViewer.setExpandedElements(expandNode.toArray());
+//		} catch (Exception e) {
+//		}
 		
-		SettingModel settingModel = new SettingModel();
-		List<IQueryParameter> query = new ArrayList<IQueryParameter>();
-		query.add(new QueryParameter("user", settingModel.getUserName()));
-
-		// 请求释放状态
-		if (settingModel.isModifiable()) {
-			query.add(new QueryParameter("status", "D")); // 可修改
-		}
-		if (settingModel.isModifiable()) {
-			query.add(new QueryParameter("status", "R")); // 已释放
-		}
-
-		// 请求类型
-		if (settingModel.isWorkbench()) {
-			query.add(new QueryParameter("function", "K")); // 工作台请求
-		}
-		if (settingModel.isCustomizing()) {
-			query.add(new QueryParameter("function", "W")); // 定制请求
-		}
-		if (settingModel.isTransportofCopies()) {
-			query.add(new QueryParameter("function", "T")); // 副本请求
-		}
-
-		query.add(new QueryParameter("start_date", settingModel.getFromDateText()));
-		query.add(new QueryParameter("end_date", settingModel.getToDateText()));
-
-		MyRestClient client = new MyRestClient("requests");
-		
-		try {
-			output = client.get(RequestOutput.class, query);
-			requestModel.addNode(output);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		//初始化模型
+		var job = new InitRequestModelJob(treeViewer, requestModel);
+		job.run();
 	}
 
 	private void createTreeViewer(Composite mainContainer2) {
@@ -137,17 +154,7 @@ public class RequestWorkbenchView {
 		// 节点排序
 		treeViewer.setComparator(new RequestTreeViewerNodeComparator());
 
-		// 需要展开的节点，默认展开每层额第一个节点
-		// 一直展到请求层
-		try {
-			List<RequestNode> expandNode = new ArrayList<RequestNode>();
-			expandNode.add(requestModel.getChildren().get(0)); // 请求类型层
-			expandNode.add(requestModel.getChildren().get(0).getChildren().get(0));
-			expandNode.add(requestModel.getChildren().get(0).getChildren().get(0).getChildren().get(0));
-			treeViewer.setExpandedElements(expandNode.toArray());
-		} catch (Exception e) {
-		}
-
+		// 添加展开事件
 		treeViewer.addTreeListener(new ITreeViewerListener() {
 
 			@Override
@@ -250,7 +257,7 @@ public class RequestWorkbenchView {
 				for (RequestMessage msg : data.message) {
 					line = line + String.format("        %s\n", msg.message);
 				}
-				
+
 				document.replace(offset, 0, line);
 				textPresentation.addStyleRange(range);
 				logViewer.changeTextPresentation(textPresentation, true);
@@ -264,8 +271,8 @@ public class RequestWorkbenchView {
 
 	public void handleToolbarEvents(String parameter) {
 		switch (parameter) {
-		
-		case "unSelectAll":		//取消全选
+
+		case "unSelectAll": // 取消全选
 			handleUnSelectAll();
 			break;
 		case "release": // 释放
@@ -287,11 +294,11 @@ public class RequestWorkbenchView {
 		case "refresh": // 刷新请求树
 			handleEventRefresh();
 			break;
-		
+
 		case "clearLogs":
 			handleClearLogs();
 			break;
-			
+
 		case "setting": // 设置
 			handleEventSetting();
 			break;
@@ -312,22 +319,22 @@ public class RequestWorkbenchView {
 	}
 
 	private void handleOnePrd() {
-		callBackend("一键传输生产系统","import_prd");
+		callBackend("一键传输生产系统", "import_prd");
 	}
 
 	private void handleOneQas() {
-		callBackend("一键传输测试系统","import_qas");
+		callBackend("一键传输测试系统", "import_qas");
 	}
 
 	private void handleOneCopy() {
-		callBackend("一键副本传输","one_key_copy");
+		callBackend("一键副本传输", "one_key_copy");
 	}
 
 	private void handleRelease() {
-		callBackend("释放请求","release");
+		callBackend("释放请求", "release");
 	}
 
-	private void callBackend(String title,String action) {
+	private void callBackend(String title, String action) {
 		// 获取选中的请求和任务
 		List<RequestNode> requestList = new ArrayList<RequestNode>();
 		for (Object selectedObject : treeViewer.getCheckedElements()) {
@@ -342,13 +349,16 @@ public class RequestWorkbenchView {
 	}
 
 	private void handleEventRefresh() {
-		initRequestTreeView();
+		initData();
 	}
 
 	private void handleEventSetting() {
 		Shell shell = MyAdtTools.getActiveShell();
 		SettingDialog dialog = new SettingDialog(shell);
-		dialog.open();
+		int returnCode = dialog.open();
+		if (returnCode == Window.OK) {
+			handleEventRefresh();
+		}
 	}
 
 	private void lazyloadTasks(TRNode node) {

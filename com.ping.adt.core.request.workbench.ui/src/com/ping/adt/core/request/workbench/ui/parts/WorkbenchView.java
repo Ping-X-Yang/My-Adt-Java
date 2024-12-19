@@ -44,7 +44,6 @@ public class WorkbenchView {
 		parent.setLayout(new FillLayout());
 		requestWorkbenchView = new RequestWorkbenchView(parent,broker);
 		requestWorkbenchView.createContents();
-
 	}
 
 	@Focus

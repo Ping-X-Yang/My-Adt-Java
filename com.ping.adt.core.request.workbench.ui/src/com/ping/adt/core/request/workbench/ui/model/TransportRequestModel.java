@@ -28,5 +28,4 @@ public class TransportRequestModel extends RequestNode {
 			findAndCreateNode(this, conditions, data, classes);
 		}
 	}
-
 }

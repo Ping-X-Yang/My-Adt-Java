@@ -44,8 +44,12 @@ public class TRNode extends RequestNode {
 			addObjects(task.taskObjects, node, 0);
 		}
 		
-		//添加对象
-		addObjects(data.requestObjects, this, nextPosition);
+		
+		//添加请求对象
+		SettingModel setting = new SettingModel();
+		if (setting.isRequestObjectVisible()) {
+			addObjects(data.requestObjects, this, nextPosition);
+		}
 		
 	}
 	
