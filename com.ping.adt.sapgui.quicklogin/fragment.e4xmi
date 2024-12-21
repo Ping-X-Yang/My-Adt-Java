@@ -5,17 +5,27 @@
       <persistedState key="persistState" value="false"/>
       <parameters xmi:id="_P5iAkLLSEe-0aaawiPMLmA" elementId="com.ping.adt.sapgui.quicklogin.commandparameter.systemName" name="&#x7cfb;&#x7edf;&#x540d;&#x79f0;"/>
     </elements>
+    <elements xsi:type="commands:Command" xmi:id="_aTynEL9WEe-c7YmTuCb3Sg" elementId="com.ping.adt.sapgui.quicklogin.MFD.command.navToTarget" commandName="NavToTarget" description="&#x5728;GUI&#x4e0a;&#x767b;&#x5f55;&#x76ee;&#x6807;&#x7cfb;&#x7edf;&#xff0c;&#x5e76;&#x5bfc;&#x822a;&#x81f3;&#x76ee;&#x6807;&#x67e5;&#x770b;&#x5668;" commandIconURI="platform:/plugin/com.ping.adt.sapgui.quicklogin/icons/sapgui.png">
+      <parameters xmi:id="_13vrUL9WEe-c7YmTuCb3Sg" elementId="com.ping.adt.sapgui.quicklogin.MFD.command.navToTarget.parameter.MenuItemName" name="&#x7cfb;&#x7edf;&#x540d;&#x79f0;"/>
+    </elements>
   </fragments>
   <fragments xsi:type="fragment:StringModelFragment" xmi:id="_fW12kIrOEeW7h_qdP9N9fw" featurename="handlers" parentElementId="xpath:/">
     <elements xsi:type="commands:Handler" xmi:id="_k2L0IIrOEeW7h_qdP9N9fw" elementId="com.ping.adt.sapgui.quicklogin.MFD.handler" contributionURI="bundleclass://com.ping.adt.sapgui.quicklogin/com.ping.adt.sapgui.quicklogin.handlers.DynamicMenuItemHandler" command="_UCYfwIrOEeW7h_qdP9N9fw">
       <persistedState key="persistState" value="false"/>
     </elements>
+    <elements xsi:type="commands:Handler" xmi:id="_LFZU0L9XEe-c7YmTuCb3Sg" elementId="com.ping.adt.sapgui.quicklogin.MFD.NavToTarget.handler" contributionURI="bundleclass://com.ping.adt.sapgui.quicklogin/com.ping.adt.sapgui.quicklogin.handlers.NavToTargetHandle" command="_aTynEL9WEe-c7YmTuCb3Sg"/>
   </fragments>
   <fragments xsi:type="fragment:StringModelFragment" xmi:id="_pVgfIIrOEeW7h_qdP9N9fw" featurename="menuContributions" parentElementId="xpath:/">
-    <elements xsi:type="menu:MenuContribution" xmi:id="_tSwX0IrOEeW7h_qdP9N9fw" elementId="com.ping.adt.sapgui.quicklogin.MFD.menucontribution" positionInParent="after=help" parentId="org.eclipse.ui.main.menu">
+    <elements xsi:type="menu:MenuContribution" xmi:id="_tSwX0IrOEeW7h_qdP9N9fw" elementId="com.ping.adt.sapgui.quicklogin.MFD.menucontribution.0" positionInParent="after=help" parentId="org.eclipse.ui.main.menu">
       <persistedState key="persistState" value="false"/>
       <children xsi:type="menu:Menu" xmi:id="_wg9ZMIrOEeW7h_qdP9N9fw" elementId="com.ping.adt.sapgui.quicklogin.MFD.menu.quicklogin" label="&#x5feb;&#x6377;&#x767b;&#x5f55;">
-        <children xsi:type="menu:DynamicMenuContribution" xmi:id="_niVJwLLFEe-0aaawiPMLmA" elementId="com.ping.adt.sapgui.quicklogin.MFD.dynamicmenucontribution" label="&#x52a8;&#x6001;&#x83dc;&#x5355;&#x8d21;&#x732e;" contributionURI="bundleclass://com.ping.adt.sapgui.quicklogin/com.ping.adt.core.request.workbench.ui.handlers.DynamicMenu"/>
+        <children xsi:type="menu:DynamicMenuContribution" xmi:id="_niVJwLLFEe-0aaawiPMLmA" elementId="com.ping.adt.sapgui.quicklogin.MFD.dynamicmenucontribution" label="&#x52a8;&#x6001;&#x83dc;&#x5355;&#x8d21;&#x732e;" contributionURI="bundleclass://com.ping.adt.sapgui.quicklogin/com.ping.adt.sapgui.quicklogin.handlers.DynamicMenu"/>
+        <children xsi:type="menu:DirectMenuItem" xmi:id="_NS4OkL7fEe-h8Ng4Li6amQ" elementId="com.ping.adt.sapgui.quicklogin.directmenuitem." label="&#x6d4b;&#x8bd5;" contributionURI="bundleclass://com.ping.adt.sapgui.quicklogin/com.ping.adt.sapgui.quicklogin.test.TestHandle"/>
+      </children>
+    </elements>
+    <elements xsi:type="menu:MenuContribution" xmi:id="_gsFQwL9UEe-c7YmTuCb3Sg" elementId="com.ping.adt.sapgui.quicklogin.MFD.menucontribution.1" positionInParent="after=com.ping.adt.core.MFD..menu.1" parentId="popup">
+      <children xsi:type="menu:Menu" xmi:id="_m-fC8L9UEe-c7YmTuCb3Sg" elementId="com.ping.adt.sapgui.quicklogin.MFD.menu.navgation" label="&#x5bfc;&#x822a;&#x81f3;GUI" iconURI="platform:/plugin/com.ping.adt.sapgui.quicklogin/icons/navIcon.png">
+        <children xsi:type="menu:DynamicMenuContribution" xmi:id="__qBTIL9VEe-c7YmTuCb3Sg" elementId="com.ping.adt.sapgui.quicklogin.MFD.menu.navgation.dynamicMenuContribution" label="&#x52a8;&#x6001;SAP GUI&#x83dc;&#x5355;&#x9879;&#x76ee;" contributionURI="bundleclass://com.ping.adt.sapgui.quicklogin/com.ping.adt.sapgui.quicklogin.handlers.NavToTargetWithGUI"/>
       </children>
     </elements>
   </fragments>

@@ -1,5 +1,5 @@
 
-package com.ping.adt.core.request.workbench.ui.handlers;
+package com.ping.adt.sapgui.quicklogin.handlers;
 
 import java.util.List;
 

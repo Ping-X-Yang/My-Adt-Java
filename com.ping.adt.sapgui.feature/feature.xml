@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="com.ping.adt.sapgui.feature"
-      label="SAP GUI"
+      label="SAP GUI For Windows"
       version="0.0.5"
       provider-name="Ping">
 
