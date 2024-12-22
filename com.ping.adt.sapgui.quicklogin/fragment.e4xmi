@@ -20,7 +20,7 @@
       <persistedState key="persistState" value="false"/>
       <children xsi:type="menu:Menu" xmi:id="_wg9ZMIrOEeW7h_qdP9N9fw" elementId="com.ping.adt.sapgui.quicklogin.MFD.menu.quicklogin" label="&#x5feb;&#x6377;&#x767b;&#x5f55;">
         <children xsi:type="menu:DynamicMenuContribution" xmi:id="_niVJwLLFEe-0aaawiPMLmA" elementId="com.ping.adt.sapgui.quicklogin.MFD.dynamicmenucontribution" label="&#x52a8;&#x6001;&#x83dc;&#x5355;&#x8d21;&#x732e;" contributionURI="bundleclass://com.ping.adt.sapgui.quicklogin/com.ping.adt.sapgui.quicklogin.handlers.DynamicMenu"/>
-        <children xsi:type="menu:DirectMenuItem" xmi:id="_NS4OkL7fEe-h8Ng4Li6amQ" elementId="com.ping.adt.sapgui.quicklogin.directmenuitem." label="&#x6d4b;&#x8bd5;" contributionURI="bundleclass://com.ping.adt.sapgui.quicklogin/com.ping.adt.sapgui.quicklogin.test.TestHandle"/>
+        <children xsi:type="menu:DirectMenuItem" xmi:id="_NS4OkL7fEe-h8Ng4Li6amQ" elementId="com.ping.adt.sapgui.quicklogin.directmenuitem." label="&#x6d4b;&#x8bd5;" enabled="false" contributionURI="bundleclass://com.ping.adt.sapgui.quicklogin/com.ping.adt.sapgui.quicklogin.test.TestHandle"/>
       </children>
     </elements>
     <elements xsi:type="menu:MenuContribution" xmi:id="_gsFQwL9UEe-c7YmTuCb3Sg" elementId="com.ping.adt.sapgui.quicklogin.MFD.menucontribution.1" positionInParent="after=com.ping.adt.core.MFD..menu.1" parentId="popup">

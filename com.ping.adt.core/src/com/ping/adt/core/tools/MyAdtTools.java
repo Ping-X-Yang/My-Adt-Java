@@ -38,6 +38,9 @@ import org.eclipse.core.runtime.Path;
 
 public class MyAdtTools {
 	
+	public static IWorkbenchWindow getActiveWindow() {
+		return PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+	}
 	
 	public static Shell getActiveShell() {
 		return PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();

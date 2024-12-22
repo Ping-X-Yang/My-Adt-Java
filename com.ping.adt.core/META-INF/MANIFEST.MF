@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: My Adt Core
 Bundle-SymbolicName: com.ping.adt.core;singleton:=true
-Bundle-Version: 0.0.7
+Bundle-Version: 0.0.8
 Export-Package: com.alibaba.fastjson2,
  com.alibaba.fastjson2.annotation,
  com.alibaba.fastjson2.codec,
@@ -50,7 +50,8 @@ Require-Bundle: org.eclipse.jface,
  com.sap.adt.tools.abapsource.ui;bundle-version="3.46.1",
  com.sap.adt.util.ui;bundle-version="3.46.0",
  com.sap.adt.tools.core;bundle-version="3.46.1",
- com.sap.adt.tools.core.ui;bundle-version="3.46.1"
+ com.sap.adt.tools.core.ui;bundle-version="3.46.1",
+ org.eclipse.e4.ui.workbench;bundle-version="1.15.500"
 Bundle-RequiredExecutionEnvironment: JavaSE-21
 Automatic-Module-Name: com.ping.adt.core
 Import-Package: jakarta.annotation;version="[2.1.0,3.0.0)",

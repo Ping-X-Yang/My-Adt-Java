@@ -2,7 +2,7 @@
 <feature
       id="com.ping.adt.sapgui.feature"
       label="SAP GUI For Windows"
-      version="0.0.5"
+      version="1.0.0"
       provider-name="Ping">
 
    <description url="http://www.example.com/description">

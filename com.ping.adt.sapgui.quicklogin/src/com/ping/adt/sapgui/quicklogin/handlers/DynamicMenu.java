@@ -57,9 +57,9 @@ public class DynamicMenu {
 
 	}
 
-	@AboutToHide
-	public void aboutToHide(List<MMenuElement> items) {
-
-	}
+//	@AboutToHide
+//	public void aboutToHide(List<MMenuElement> items) {
+//
+//	}
 
 }

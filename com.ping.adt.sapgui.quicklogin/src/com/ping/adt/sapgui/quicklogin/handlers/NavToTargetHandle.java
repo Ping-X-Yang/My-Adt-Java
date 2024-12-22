@@ -25,6 +25,11 @@ import com.sap.adt.destinations.model.internal.DestinationDataWritable;
 import com.sap.adt.projectexplorer.ui.internal.node.AbapRepositoryPackageNode;
 import com.sap.adt.projectexplorer.ui.internal.virtualfolders.VirtualFolderNode;
 import com.sap.adt.projectexplorer.ui.node.IAbapRepositoryObjectNode;
+import com.sap.adt.tm.IRequest;
+import com.sap.adt.tm.ITask;
+import com.sap.adt.tools.abapsource.sources.AdtSourceServicesFactory;
+import com.sap.adt.tools.abapsource.sources.IAdtSourceServicesFactory;
+import com.sap.adt.tools.abapsource.sources.codeelementinformation.ICodeElementInformationBackendService;
 import com.sap.adt.tools.abapsource.ui.internal.navigation.SourceCodeNavigationHandler;
 import com.sap.adt.tools.abapsource.ui.internal.sqlscriptparser.AmdpNavigationService;
 import com.sap.adt.tools.abapsource.ui.sources.editors.IAbapSourceMultiPageEditor;
@@ -46,6 +51,7 @@ import com.sap.adt.tools.core.urimapping.typeservice.AdtUriMappingTypeServiceFac
 import jakarta.inject.Named;
 
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
@@ -101,7 +107,7 @@ public class NavToTargetHandle {
 				// 导航到当前ABAP编辑器中对象
 				handleTextSelection(textSelection);
 			}
-		}else {
+		} else {
 			handleOthers();
 		}
 
@@ -162,16 +168,20 @@ public class NavToTargetHandle {
 			IFile file = ((IFileEditorInput) editorInput).getFile();// 91
 			IAdtUriMappingService mapper = AdtUriMappingServiceFactory.createUriMappingService();// 92
 			URI uri = mapper.getAdtUri(file);// 93
-			IAdtObjectReference objectReference = AdtObjectReferenceAdapterFactory
-					.createFromEmfReference(IAdtCoreFactory.eINSTANCE.createAdtObjectReference());// 94
-			objectReference.setUri(uri);// 95
+			IAdtObjectReference objectReference = createAdtObjectReference(uri);
 			objectReference.setName(AdtUriMappingTypeServiceFactory.createUriMappingTypeService().getObjectName(file));// 96
 			openGui(objectReference);
 			return;
 		}
-		
-		
+
 		openGui();
+	}
+
+	private IAdtObjectReference createAdtObjectReference(URI uri) {
+		IAdtObjectReference objectReference = AdtObjectReferenceAdapterFactory
+				.createFromEmfReference(IAdtCoreFactory.eINSTANCE.createAdtObjectReference());// 94
+		objectReference.setUri(uri);// 95
+		return objectReference;
 	}
 
 	private void handleTextSelectionForSelected(IAdtCompoundTextSelection adtCompoundTextSelection) {
@@ -198,12 +208,39 @@ public class NavToTargetHandle {
 		Job getTargetJob = new Job("ABAP源码中查找存储库对象") {
 			protected IStatus run(IProgressMonitor monitor) {
 				try {
-
 					IAdtObjectReference target = getNavigationTarget(destination, sourceText, sourceUri, filters,
 							monitor, navigationSource);
+					if (target == null) {
+						return Status.OK_STATUS;
+					}
+
+					// 返回的URI中包含ddic, 说明这是一个DDIC对象
+					/// wb/object_type/viewdvf/表示DDIC视图对象类型
+					// 然后再用元素信息服务获取其对应的字段(如果有字段)
+					if (target.getUri().getPath().contains("/ddic/")
+							|| target.getUri().getPath().contains("/wb/object_type/viewdvf/")) {
+						IAdtSourceServicesFactory adtSourceServicesFactory = AdtSourceServicesFactory.createInstance();
+						ICodeElementInformationBackendService codeElementInformationService = adtSourceServicesFactory
+								.createCodeElementInformationService(destination);
+						Object codeElementInformation = (IAdtObjectReference) codeElementInformationService
+								.getCodeElementInformation(sourceUri, sourceText, monitor);
+						if (codeElementInformation instanceof IAdtObjectReference) {
+							target = (IAdtObjectReference) codeElementInformation;
+						}
+
+						// 转义分号
+						target.setUri(new URI(target.getUri().toString().replace(";", "%3B")));
+
+						// 没有片段则添加一个片段，使每个URI都能进入fragment mapping增强
+						String fragment = target.getUri().getFragment();
+						if (fragment == null || fragment.equals("")) {
+							target.setUri(new URI(target.getUri() + "#position"));
+						}
+					}
+
 					if (target != null) {
 						openGui(target);
-					}else {
+					} else {
 						openGui();
 					}
 
@@ -228,24 +265,45 @@ public class NavToTargetHandle {
 	}
 
 	private void handleTreeSelection(ITreeSelection selection) {
-		
+
 		// 存储库对象
 		Object element = selection.getFirstElement();
-		if (element instanceof IAbapRepositoryObjectNode) {
+		if (element instanceof IAbapRepositoryObjectNode) { // ABAP存储库对象
 			IAbapRepositoryObjectNode node = (IAbapRepositoryObjectNode) selection.getFirstElement();
 			IAdtObjectReference target = node.getNavigationTarget();
 			openGui(target);
-		}else if(element instanceof VirtualFolderNode) {
+		} else if (element instanceof VirtualFolderNode) { // ABAP开发包树节点
 			VirtualFolderNode node = (VirtualFolderNode) selection.getFirstElement();
 			Object adapter = node.getAdapter(IAdtObjectReference.class);
 			if (adapter instanceof IAdtObjectReference) {
-				IAdtObjectReference target = (IAdtObjectReference)adapter;
+				IAdtObjectReference target = (IAdtObjectReference) adapter;
 				openGui(target);
-			}else {
+			} else {
 				openGui();
 			}
-		}
-		else {
+		} else if (element instanceof IRequest) { // 请求号
+			IRequest request = (IRequest) element;
+			URI requestURI = null;
+			try {
+				requestURI = new URI(request.getUri());
+			} catch (URISyntaxException e) {
+				openGui();
+				return;
+			}
+			IAdtObjectReference objectReference = createAdtObjectReference(requestURI);
+			openGui(objectReference);
+		} else if (element instanceof ITask) { // 任务号
+			ITask task = (ITask) element;
+			URI taskURI = null;
+			try {
+				taskURI = new URI(task.getUri());
+			} catch (URISyntaxException e) {
+				openGui();
+				return;
+			}
+			IAdtObjectReference objectReference = createAdtObjectReference(taskURI);
+			openGui(objectReference);
+		} else {
 			openGui();
 		}
 
@@ -301,12 +359,12 @@ public class NavToTargetHandle {
 
 		connectGUI = true;
 	}
-	
+
 	private void openGui() {
-		//跳转到GUI的导航页
+		// 跳转到GUI的导航页
 		openGui("SESSION_MANAGER");
 	}
-	
+
 	private void openGui(String tcode) {
 		// 组合配置数据
 		IDestinationDataWritable destinationDataWritable = new DestinationDataWritable(
@@ -318,13 +376,11 @@ public class NavToTargetHandle {
 		destinationDataWritable.setLanguage(logonConfiguration.getLanguage());
 
 		// 创建启动参数
-		SapGuiStartupData startupInfo = new SapGuiStartupData(destinationDataWritable, tcode, false,
-				null, null, true);
+		SapGuiStartupData startupInfo = new SapGuiStartupData(destinationDataWritable, tcode, false, null, null, true);
 
 		// 启动Winows上的SAP GUI,并导航至目标
 		WinGuiServerProxy.getProxy().openConnection(startupInfo, 0);
 	}
-	
 
 	private IAdtObjectReference getNavigationTarget(String destination, String sourceCode, URI uri,
 			FilterValue[] filters, IProgressMonitor monitor, ITextNavigationSource navigationSource) throws Exception {
@@ -343,7 +399,5 @@ public class NavToTargetHandle {
 		}
 		return abapNavigationService.getNavigationTarget(uri, sourceCode, monitor, filters);
 	}
-	
-	
 
 }
