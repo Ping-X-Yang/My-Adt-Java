@@ -26,9 +26,10 @@ import com.ping.adt.sapgui.quicklogin.internal.PluginConstants;
 
 public class NavToTargetWithGUI {
 	@AboutToShow
-	public void aboutToShow(List<MMenuElement> items /*, ECommandService commandService*/ , EModelService modelService) {
+	public void aboutToShow(List<MMenuElement> items /* , ECommandService commandService */ ,
+			EModelService modelService) {
 		ECommandService commandService = MyAdtTools.getActiveWindow().getService(ECommandService.class);
-		
+
 		// 获取命令参数对象
 		IParameter parameter;
 		Command command = commandService.getCommand("com.ping.adt.sapgui.quicklogin.MFD.command.navToTarget");
@@ -49,16 +50,15 @@ public class NavToTargetWithGUI {
 		for (LoginConfiguration configuration : MyPlugin.model.getElements()) {
 			if (configuration.isMenuItemVisible()) {
 				MHandledMenuItem menuItem = modelService.createModelElement(MHandledMenuItem.class);
-				
-				//加入贡献中
+
+				// 加入贡献中
 				HandledContributionItem handledContributionItem = new HandledContributionItem();
 				handledContributionItem.setModel(menuItem);
-				
-		
-				
+
 //				MHandledMenuItem menuItem = MMenuFactory.INSTANCE.createHandledMenuItem();
 				items.add(menuItem);
-				menuItem.setElementId("com.ping.adt.sapgui.quicklogin.MFD.menu.navgation.dynamicMenuContribution."+ count++ );
+				menuItem.setElementId(
+						"com.ping.adt.sapgui.quicklogin.MFD.menu.navgation.dynamicMenuContribution." + count++);
 				menuItem.setLabel(configuration.getMenuItemName());
 				menuItem.setIconURI(PluginConstants.SAP_GUI_ICON);
 				menuItem.setToBeRendered(true);
@@ -70,8 +70,7 @@ public class NavToTargetWithGUI {
 				parameterizations[0] = new Parameterization(parameter, configuration.getMenuItemName());
 				ParameterizedCommand parameterizedCommand = new ParameterizedCommand(command, parameterizations);
 				menuItem.setWbCommand(parameterizedCommand);
-				
-				
+
 			}
 		}
 	}
