@@ -10,17 +10,12 @@ import com.sap.adt.destinations.model.IDestinationData;
 import com.sap.adt.destinations.model.IDestinationDataWritable;
 import com.sap.adt.destinations.model.ISystemConfiguration;
 import com.sap.adt.logging.AdtLogging;
-import com.sap.adt.logging.AdtTraceLevel;
 import com.sap.adt.logging.IAdtLogger;
-import com.sap.adt.sapgui.ui.internal.Activator;
 import com.sap.adt.tools.core.IAdtObjectReference;
-import com.sap.adt.tools.core.model.util.AdtObjectReferenceAdapterFactory;
 
 import java.io.UnsupportedEncodingException;
-import java.net.InetAddress;
 import java.net.URI;
 import java.net.URLEncoder;
-import java.text.MessageFormat;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
