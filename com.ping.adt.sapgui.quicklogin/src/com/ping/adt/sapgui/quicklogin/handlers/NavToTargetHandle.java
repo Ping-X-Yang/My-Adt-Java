@@ -410,7 +410,7 @@ public class NavToTargetHandle {
 			return;
 		}
 
-		// 表、结构、视图、CDS视图都需要添加一个增强标记(#postion), 才能使其进入增强
+		// 表、结构、视图、CDS视图都需要添加一个增强标记(#postion),  才能使其进入增强
 		if (type.contains("TABL") || type.contains("VIEW") || type.contains("DDLS")) {
 			target.setUri(new URI(target.getUri() + "#position"));
 		}
