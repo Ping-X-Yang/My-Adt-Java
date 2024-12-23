@@ -232,10 +232,7 @@ public class NavToTargetHandle {
 						target.setUri(new URI(target.getUri().toString().replace(";", "%3B")));
 
 						// 没有片段则添加一个片段，使每个URI都能进入fragment mapping增强
-						String fragment = target.getUri().getFragment();
-						if (fragment == null || fragment.equals("")) {
-							target.setUri(new URI(target.getUri() + "#position"));
-						}
+						addFragmentForSpecialObject(target);
 					}
 
 					if (target != null) {
@@ -398,6 +395,26 @@ public class NavToTargetHandle {
 					.createNavigationService(destination);
 		}
 		return abapNavigationService.getNavigationTarget(uri, sourceCode, monitor, filters);
+	}
+
+	private void addFragmentForSpecialObject(IAdtObjectReference target) throws URISyntaxException {
+		String fragment = target.getUri().getFragment();
+
+		// 存在fragment直接退出
+		if (fragment != null && !fragment.equals("")) {
+			return;
+		}
+
+		String type = target.getType();
+		if (type == null) {
+			return;
+		}
+
+		// 表、结构、视图、CDS视图都需要添加一个增强标记(#postion), 才能使其进入增强
+		if (type.contains("TABL") || type.contains("VIEW") || type.contains("DDLS")) {
+			target.setUri(new URI(target.getUri() + "#position"));
+		}
+
 	}
 
 }
