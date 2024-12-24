@@ -18,6 +18,7 @@ import com.ping.adt.sapgui.quicklogin.gui.SapGuiStartupData;
 import com.ping.adt.sapgui.quicklogin.gui.WinGuiServerProxy;
 import com.ping.adt.sapgui.quicklogin.internal.LoginConfiguration;
 import com.ping.adt.sapgui.quicklogin.internal.MyPlugin;
+import com.ping.adt.sapgui.quicklogin.internal.WinGuiService;
 import com.sap.adt.destinations.model.IDestinationDataWritable;
 import com.sap.adt.destinations.model.ISystemConfiguration;
 import com.sap.adt.destinations.model.config.AdtSystemConfigurationServiceFactory;
@@ -64,26 +65,13 @@ import org.eclipse.e4.core.di.annotations.CanExecute;
 
 public class NavToTargetHandle {
 
-	LoginConfiguration logonConfiguration = null;
-	ISystemConfiguration systemConfiguration = null;
-	boolean connectGUI;
-
 	@Execute
 	public void execute(
 			@Named("com.ping.adt.sapgui.quicklogin.MFD.command.navToTarget.parameter.MenuItemName") String parameter) {
 
-		// 初始化变量
-		connectGUI = false;
-
-		// 获取对应系统配置的登录账号密码
-		logonConfiguration = getLogonConfiguration(parameter);
-		if (logonConfiguration == null) {
-			return;
-		}
-
-		// 获取对应系统的登录配置
-		systemConfiguration = getSystemConfiguration(logonConfiguration.getSystemName());
-		if (systemConfiguration == null) {
+		// 添加系统，账号
+		// 添加系统，账号
+		if (!WinGuiService.addConfiguration(parameter)) {
 			return;
 		}
 
@@ -114,19 +102,19 @@ public class NavToTargetHandle {
 	}
 
 	private void handleOthers() {
-		openGui();
+		WinGuiService.openGui();
 	}
 
 	private void handleTextSelection(ITextSelection textSelection) {
 		// 只处理ABAP上下文的Selection
 		if (!(textSelection instanceof IAdtCompoundTextSelection)) {
-			openGui();
+			WinGuiService.openGui();
 			return;
 		}
 
 		IAdtCompoundTextSelection AdtCompoundTextSelection = (IAdtCompoundTextSelection) textSelection;
 		if (!(AdtCompoundTextSelection.getPart() instanceof IEditorPart)) {
-			openGui();
+			WinGuiService.openGui();
 			return;
 		}
 
@@ -156,7 +144,7 @@ public class NavToTargetHandle {
 					objectReference.setUri(uri);// 79
 					objectReference.setName(AdtUriMappingTypeServiceFactory.createUriMappingTypeService()
 							.getObjectName(sourcePage.getFile()));// 81
-					openGui(objectReference);
+					WinGuiService.openGui(objectReference);
 					return;
 				}
 			}
@@ -170,11 +158,11 @@ public class NavToTargetHandle {
 			URI uri = mapper.getAdtUri(file);// 93
 			IAdtObjectReference objectReference = createAdtObjectReference(uri);
 			objectReference.setName(AdtUriMappingTypeServiceFactory.createUriMappingTypeService().getObjectName(file));// 96
-			openGui(objectReference);
+			WinGuiService.openGui(objectReference);
 			return;
 		}
 
-		openGui();
+		WinGuiService.openGui();
 	}
 
 	private IAdtObjectReference createAdtObjectReference(URI uri) {
@@ -236,9 +224,9 @@ public class NavToTargetHandle {
 					}
 
 					if (target != null) {
-						openGui(target);
+						WinGuiService.openGui(target);
 					} else {
-						openGui();
+						WinGuiService.openGui();
 					}
 
 					if (monitor.isCanceled()) {
@@ -268,15 +256,15 @@ public class NavToTargetHandle {
 		if (element instanceof IAbapRepositoryObjectNode) { // ABAP存储库对象
 			IAbapRepositoryObjectNode node = (IAbapRepositoryObjectNode) selection.getFirstElement();
 			IAdtObjectReference target = node.getNavigationTarget();
-			openGui(target);
+			WinGuiService.openGui(target);
 		} else if (element instanceof VirtualFolderNode) { // ABAP开发包树节点
 			VirtualFolderNode node = (VirtualFolderNode) selection.getFirstElement();
 			Object adapter = node.getAdapter(IAdtObjectReference.class);
 			if (adapter instanceof IAdtObjectReference) {
 				IAdtObjectReference target = (IAdtObjectReference) adapter;
-				openGui(target);
+				WinGuiService.openGui(target);
 			} else {
-				openGui();
+				WinGuiService.openGui();
 			}
 		} else if (element instanceof IRequest) { // 请求号
 			IRequest request = (IRequest) element;
@@ -284,99 +272,32 @@ public class NavToTargetHandle {
 			try {
 				requestURI = new URI(request.getUri());
 			} catch (URISyntaxException e) {
-				openGui();
+				WinGuiService.openGui();
 				return;
 			}
 			IAdtObjectReference objectReference = createAdtObjectReference(requestURI);
-			openGui(objectReference);
+			WinGuiService.openGui(objectReference);
 		} else if (element instanceof ITask) { // 任务号
 			ITask task = (ITask) element;
 			URI taskURI = null;
 			try {
 				taskURI = new URI(task.getUri());
 			} catch (URISyntaxException e) {
-				openGui();
+				WinGuiService.openGui();
 				return;
 			}
 			IAdtObjectReference objectReference = createAdtObjectReference(taskURI);
-			openGui(objectReference);
+			WinGuiService.openGui(objectReference);
 		} else {
-			openGui();
+			WinGuiService.openGui();
 		}
 
-	}
-
-	private ISystemConfiguration getSystemConfiguration(String systemName) {
-		Map<String, ISystemConfiguration> systemConfigurationMap = null;
-		ISystemConfiguration systemConfiguration = null;
-
-		// 获取系统名称
-		// 配置来源是SAPGUI上配置的登录系统
-		try {
-			systemConfigurationMap = AdtSystemConfigurationServiceFactory.createSystemConfigurationService()
-					.getSystemConfigurations();
-			systemConfiguration = systemConfigurationMap.get(systemName);
-		} catch (Exception var3) {
-		}
-
-		return systemConfiguration;
-	}
-
-	private LoginConfiguration getLogonConfiguration(String parameter) {
-		// 查找参数对应的配置
-		return MyPlugin.model.getElements().stream().filter(e -> e.getMenuItemName().equals(parameter)).findAny().get();
 	}
 
 	@CanExecute
 	public boolean canExecute() {
 
 		return true;
-	}
-
-	private void openGui(IAdtObjectReference objectReference) {
-		if (connectGUI == true) {
-			return;
-		}
-
-		// 组合配置数据
-		IDestinationDataWritable destinationDataWritable = new DestinationDataWritable(
-				String.format("%d", System.currentTimeMillis()));
-		destinationDataWritable.setSystemConfiguration(systemConfiguration);
-		destinationDataWritable.setClient(logonConfiguration.getClient());
-		destinationDataWritable.setUser(logonConfiguration.getUsername());
-		destinationDataWritable.setPassword(logonConfiguration.getPassword());
-		destinationDataWritable.setLanguage(logonConfiguration.getLanguage());
-
-		// 创建启动参数
-		SapGuiStartupData startupInfo = new SapGuiStartupData(destinationDataWritable, objectReference, false,
-				"WB:DISPLAY", null, null, true);
-
-		// 启动Winows上的SAP GUI,并导航至目标
-		WinGuiServerProxy.getProxy().openConnection(startupInfo, 0);
-
-		connectGUI = true;
-	}
-
-	private void openGui() {
-		// 跳转到GUI的导航页
-		openGui("SESSION_MANAGER");
-	}
-
-	private void openGui(String tcode) {
-		// 组合配置数据
-		IDestinationDataWritable destinationDataWritable = new DestinationDataWritable(
-				String.format("%d", System.currentTimeMillis()));
-		destinationDataWritable.setSystemConfiguration(systemConfiguration);
-		destinationDataWritable.setClient(logonConfiguration.getClient());
-		destinationDataWritable.setUser(logonConfiguration.getUsername());
-		destinationDataWritable.setPassword(logonConfiguration.getPassword());
-		destinationDataWritable.setLanguage(logonConfiguration.getLanguage());
-
-		// 创建启动参数
-		SapGuiStartupData startupInfo = new SapGuiStartupData(destinationDataWritable, tcode, false, null, null, true);
-
-		// 启动Winows上的SAP GUI,并导航至目标
-		WinGuiServerProxy.getProxy().openConnection(startupInfo, 0);
 	}
 
 	private IAdtObjectReference getNavigationTarget(String destination, String sourceCode, URI uri,
@@ -410,7 +331,7 @@ public class NavToTargetHandle {
 			return;
 		}
 
-		// 表、结构、视图、CDS视图都需要添加一个增强标记(#postion),  才能使其进入增强
+		// 表、结构、视图、CDS视图都需要添加一个增强标记(#postion), 才能使其进入增强
 		if (type.contains("TABL") || type.contains("VIEW") || type.contains("DDLS")) {
 			target.setUri(new URI(target.getUri() + "#position"));
 		}

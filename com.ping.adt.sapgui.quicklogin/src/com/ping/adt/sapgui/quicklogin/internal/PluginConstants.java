@@ -11,6 +11,7 @@ public class PluginConstants {
 
 	public static final String KEY_PATH = "path";
 	public static final String KEY_CONFIGURATION = "CONFIGURATION";
+	public static final String VISIBLE_TCODE_INPUT_DIALOG = "VisibleTcodeInputDialog";
 
 	public static final String NODE_ID = "com.ping.adt.sapgui.quicklogin";
 

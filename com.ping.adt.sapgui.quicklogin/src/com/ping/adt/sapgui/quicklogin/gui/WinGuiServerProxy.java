@@ -305,31 +305,32 @@ public class WinGuiServerProxy {
 			protected IStatus run(IProgressMonitor monitor) {
 				WinGuiPipeXmlCommand command = WinGuiServerProxy.this.createLogonXml(startupData, windowHandle);
 				WinGuiServerProxy.this.sendCommand(command);
+				return Status.OK_STATUS;
 
-				int waited = 0;
-				int timeout = WinGuiServerProxy.this.getMaxConnectionTimeout();
-				do {
-					try {
-						if (latch.await(10L, TimeUnit.MILLISECONDS)) {
-							return Status.OK_STATUS;
-						}
-						waited += 10;
-					} catch (InterruptedException e) {
-//						WinGuiServerProxy.this.trace(AdtTraceLevel.ERROR, e, e.getMessage(), new Object[0]);
-						throw new IllegalStateException(e);
-					}
-					if (monitor.isCanceled()) {
-//						WinGuiServerProxy.this.traceWithStack(AdtTraceLevel.WARNING,
-//								"Connection job was canceled, closing the editor.", new Object[0]);
-//						WinGuiServerProxy.this.closeSapGuiEditorPart(startupData.getGuid());
-						return Status.CANCEL_STATUS;
-					}
-				} while (waited < timeout);
-//				WinGuiServerProxy.this.traceWithStack(AdtTraceLevel.WARNING,
-//						"Starting the connection job failed due to timeout {0}, closing the editor.",
-//						new Object[] { Integer.valueOf(timeout) });
-				WinGuiServerProxy.this.closeSapGuiEditorPart(startupData.getGuid());
-				return Status.CANCEL_STATUS;
+//				int waited = 0;
+//				int timeout = WinGuiServerProxy.this.getMaxConnectionTimeout();
+//				do {
+//					try {
+//						if (latch.await(10L, TimeUnit.MILLISECONDS)) {
+//							return Status.OK_STATUS;
+//						}
+//						waited += 10;
+//					} catch (InterruptedException e) {
+////						WinGuiServerProxy.this.trace(AdtTraceLevel.ERROR, e, e.getMessage(), new Object[0]);
+//						throw new IllegalStateException(e);
+//					}
+//					if (monitor.isCanceled()) {
+////						WinGuiServerProxy.this.traceWithStack(AdtTraceLevel.WARNING,
+////								"Connection job was canceled, closing the editor.", new Object[0]);
+////						WinGuiServerProxy.this.closeSapGuiEditorPart(startupData.getGuid());
+//						return Status.CANCEL_STATUS;
+//					}
+//				} while (waited < timeout);
+////				WinGuiServerProxy.this.traceWithStack(AdtTraceLevel.WARNING,
+////						"Starting the connection job failed due to timeout {0}, closing the editor.",
+////						new Object[] { Integer.valueOf(timeout) });
+//				WinGuiServerProxy.this.closeSapGuiEditorPart(startupData.getGuid());
+//				return Status.CANCEL_STATUS;
 			}
 		};
 

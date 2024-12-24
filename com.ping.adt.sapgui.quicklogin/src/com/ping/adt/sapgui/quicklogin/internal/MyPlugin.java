@@ -11,6 +11,7 @@ public class MyPlugin {
 
 	public static LoginConfigurationListModel model;
 	public static String path;
+	public static boolean isVisibleTcodeInputDialog = true;
 	
 	
 	static {
@@ -38,6 +39,7 @@ public class MyPlugin {
 		try {
 			path = node.get(PluginConstants.KEY_PATH, "");
 			modelJson = node.get(PluginConstants.KEY_CONFIGURATION, "");
+			isVisibleTcodeInputDialog = Boolean.parseBoolean(node.get(PluginConstants.VISIBLE_TCODE_INPUT_DIALOG, "true"));
 		} catch (StorageException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

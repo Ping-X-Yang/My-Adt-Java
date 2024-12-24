@@ -41,6 +41,7 @@ public class QuickLoginCongurationPage extends PreferencePage implements IWorkbe
 	Shell shell;
 	DirectoryFieldEditor directoryFieldEditor;
 	String path;
+	private Button checkBox;
 
 	public QuickLoginCongurationPage() {
 		// TODO Auto-generated constructor stub
@@ -114,6 +115,13 @@ public class QuickLoginCongurationPage extends PreferencePage implements IWorkbe
 
 		// 创建按钮
 		createChangeButtons(centerRight);
+		
+		
+		//是否输入事务码
+		this.checkBox = new Button(top, SWT.CHECK);
+		checkBox.setText("显示事务码输入框");
+		checkBox.setSelection(MyPlugin.isVisibleTcodeInputDialog);
+		
 
 		return conentParent;
 	}
@@ -362,14 +370,16 @@ public class QuickLoginCongurationPage extends PreferencePage implements IWorkbe
 
 		// 转为JSON字符串
 		String modelJson = JSON.toJSONString(model.getElements());
+		MyPlugin.isVisibleTcodeInputDialog = this.checkBox.getSelection();
 
 		// 加密持久化配置
 		// 其中包含账号密码信息，需要加密
 		ISecurePreferences preferences = SecurePreferencesFactory.getDefault();
 		ISecurePreferences node = preferences.node(PluginConstants.NODE_ID);
 		try {
-			node.put(this.directoryFieldEditor.getPreferenceName(), this.directoryFieldEditor.getStringValue(), true);
+			node.put(this.directoryFieldEditor.getPreferenceName(), this.directoryFieldEditor.getStringValue(), false);
 			node.put(PluginConstants.KEY_CONFIGURATION, modelJson, true);
+			node.put(PluginConstants.VISIBLE_TCODE_INPUT_DIALOG, String.valueOf(MyPlugin.isVisibleTcodeInputDialog), isControlCreated());
 			node.flush();
 		} catch (StorageException | IOException e) {
 			e.printStackTrace();

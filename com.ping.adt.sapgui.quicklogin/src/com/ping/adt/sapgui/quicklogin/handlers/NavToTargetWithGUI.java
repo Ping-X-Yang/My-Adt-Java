@@ -51,9 +51,9 @@ public class NavToTargetWithGUI {
 			if (configuration.isMenuItemVisible()) {
 				MHandledMenuItem menuItem = modelService.createModelElement(MHandledMenuItem.class);
 
-				// 加入贡献中
-				HandledContributionItem handledContributionItem = new HandledContributionItem();
-				handledContributionItem.setModel(menuItem);
+//				// 加入贡献中
+//				HandledContributionItem handledContributionItem = new HandledContributionItem();
+//				handledContributionItem.setModel(menuItem);
 
 //				MHandledMenuItem menuItem = MMenuFactory.INSTANCE.createHandledMenuItem();
 				items.add(menuItem);
