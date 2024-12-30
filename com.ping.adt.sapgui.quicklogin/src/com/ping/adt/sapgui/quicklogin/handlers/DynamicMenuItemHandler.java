@@ -13,7 +13,11 @@ import com.ping.adt.sapgui.quicklogin.internal.WinGuiService;
 
 import jakarta.inject.Named;
 
+import java.awt.im.*;
+
 import org.eclipse.e4.core.di.annotations.CanExecute;
+
+import java.util.Locale;
 
 public class DynamicMenuItemHandler {
 	@Execute
@@ -43,11 +47,20 @@ public class DynamicMenuItemHandler {
 
 	private void openInputDialog() {
 		String tcode = null;
+		boolean swtich = true;
+		
+		//切换为英文输入法
+		InputContext inputContext = InputContext.getInstance();
+		Locale currentLocale = inputContext.getLocale();
+		inputContext.selectInputMethod(Locale.ENGLISH);
 		
 		InputDialog dialog = new InputDialog(MyAdtTools.getActiveShell(), "请输入事务码(可选)", null, null, null);
 		if (dialog.open()  == Window.OK) {
 			tcode = dialog.getValue();
 		}
+		
+		//切换为上一个状态
+		inputContext.selectInputMethod(currentLocale);
 		
 		if (tcode == null || tcode.equals("")) {
 			WinGuiService.openGui();

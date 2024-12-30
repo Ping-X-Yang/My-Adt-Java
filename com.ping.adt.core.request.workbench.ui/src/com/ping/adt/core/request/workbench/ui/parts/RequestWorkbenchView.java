@@ -26,6 +26,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Tree;
 
+import com.ping.adt.core.request.workbench.ui.common.MyPluginContants;
 import com.ping.adt.core.request.workbench.ui.events.Message;
 import com.ping.adt.core.request.workbench.ui.jobs.AsyncUpdateTaskNode;
 import com.ping.adt.core.request.workbench.ui.jobs.BackendJob;
@@ -319,15 +320,15 @@ public class RequestWorkbenchView {
 	}
 
 	private void handleOnePrd() {
-		callBackend("一键传输生产系统", "import_prd");
+		callBackend("一键传输生产系统", MyPluginContants.ONE_KEY_PRD);
 	}
 
 	private void handleOneQas() {
-		callBackend("一键传输测试系统", "import_qas");
+		callBackend("一键传输测试系统", MyPluginContants.ONE_KEY_QAS);
 	}
 
 	private void handleOneCopy() {
-		callBackend("一键副本传输", "one_key_copy");
+		callBackend("一键副本传输", MyPluginContants.ONE_KEY_COPY);
 	}
 
 	private void handleRelease() {

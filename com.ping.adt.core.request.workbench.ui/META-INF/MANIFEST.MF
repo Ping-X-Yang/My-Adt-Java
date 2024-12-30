@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Request Workbench
 Bundle-SymbolicName: com.ping.adt.core.request.workbench.ui;singleton:=true
-Bundle-Version: 0.0.7
+Bundle-Version: 0.0.8
 Bundle-Activator: com.ping.adt.core.request.workbench.ui.Activator
 Bundle-Vendor: Ping
 Require-Bundle: org.eclipse.jface,
